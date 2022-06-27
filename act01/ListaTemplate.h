@@ -70,8 +70,10 @@ template <class T>
 
 template <class T>
     void ListaTemplate<T>::print(){
+        int pos = 0;
         for (auto i: data) {
-            std::cout << i << data[i] << std::endl;
+            std::printf("[%d] %d \n", pos,i);
+            pos+=1;
         }
     }
 
