@@ -1,9 +1,20 @@
-#include iostream
-#include conio
+/*
+  compilar:
+    g++ -std=c++17 -Wall *.cpp
 
-int main(int argc, char const *argv[])
+  ejecutar:
+    ./a.out
+*/
+
+#include <iostream>
+#include "ListaTemplate.h"
+
+int main()
 {
-    /* code */
+    std::cout << "Template example!\n";
+    ListaTemplate<int> myList;
+
+    myList.insert(15);
+
     return 0;
 }
-

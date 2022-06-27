@@ -1,6 +1,17 @@
 # Clase 1
 
+## Templates
 
+Los templates nos permiten utilizar cualquier tipo de datos que deseemos al llamar a la función contenida en nuestro header.
+El compilador internamente los sustituye los tipos de datos para poder utilizar
+
+```c++
+template<Class T>
+
+T suma(T n1,T n2,T n3){
+    return n1+n2+n3;
+}
+```
 
 ## Actividad 1 vectores
 
