@@ -1,16 +1,20 @@
-# Actividad 1 vectores
+# Clase 1
+
+
+
+## Actividad 1 vectores
 
 1. Crear una estructura de datos de una lista de enteros con el uso de vectores.
 2. Crear una estructura de datos de una lista de enteros con el uso de vectores y templates (plantillas).
 
-## Crea una clase llamada "Lista" que contenga lo siguiente
+### Crea una clase llamada "Lista" que contenga lo siguiente
 
-### Atributos
+#### Atributos
 
 1.Un vector llamado data de tamaño MAX (MAX es una constante de valor 100) elementos de tipo entero.
 2.Un entero llamado size que contenga la cantidad de datos utilizados y almacenados en el vector.
 
-### Operaciones
+#### Operaciones
 
 - **insert** - Recibe el valor del número que se desea insertar; si hay espacio disponible, se coloca al final del vector y se incrementa en 1 size.
 - **erase** - En caso de que el vector no esté vacío, despliega el último elemento del vector (el que está en la posición size-1) y disminuye en 1 el tamaño de size. En caso de que el vector esté vacío, despliega el mensaje: “NO HAY ELEMENTOS”.
