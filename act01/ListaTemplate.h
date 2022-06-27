@@ -54,4 +54,25 @@ void ListaTemplate<T>::erase()
         std::cout << "NO HAY ELEMENTOS" << std::endl;
 }
 
-#endif _LISTA_TEMPLATE_H_
+template <class T>
+    T ListaTemplate<T>::getData(int indice)
+    {
+        if (indice >=0 && indice <= currentSize)
+        {
+        return data[indice];
+        }
+    }
+
+template <class T>
+    int ListaTemplate<T>::getSize(){
+        return currentSize;
+    }
+
+template <class T>
+    void ListaTemplate<T>::print(){
+        for (auto i: data) {
+            std::cout << i << data[i] << std::endl;
+        }
+    }
+
+#endif //_LISTA_TEMPLATE_H_

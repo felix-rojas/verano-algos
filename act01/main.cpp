@@ -15,6 +15,7 @@ int main()
     ListaTemplate<int> myList;
 
     myList.insert(15);
+    myList.print();
 
     return 0;
 }
