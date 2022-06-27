@@ -19,6 +19,18 @@ int main()
     myList.insert(13);
     myList.insert(14);
     myList.print();
+    std::cout << std::endl;
+
+    std::cout << myList.getData(3) << std::endl;
+    myList.erase();
+    myList.print();
+    std::cout << std::endl;
+
+    std::cout << "Elementos en vector: "<< myList.getSize() << std::endl;
+    myList.erase();
+    myList.erase();
+    myList.erase();
+    myList.erase();
 
     return 0;
 }

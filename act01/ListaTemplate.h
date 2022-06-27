@@ -17,7 +17,7 @@ public:
     ListaTemplate();
     bool insert(T value);
     void erase();
-    T getData(int indice);
+    auto getData(int indice);
     int getSize();
     void print();
 };
@@ -55,12 +55,9 @@ void ListaTemplate<T>::erase()
 }
 
 template <class T>
-    T ListaTemplate<T>::getData(int indice)
+    auto ListaTemplate<T>::getData(const int indice)
     {
-        if (indice >=0 && indice <= currentSize)
-        {
-        return data[indice];
-        }
+        return data.at(indice);
     }
 
 template <class T>
