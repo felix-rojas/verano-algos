@@ -33,6 +33,7 @@ unsigned int fibonacciRecursivo(uint n)
 
 int main
 {
-
+    std::cout<<sumaIterativa(10)<<std::endl;
+    std::cout<<sumaIterativa(20)<<std::endl;
     return 0;
 }
