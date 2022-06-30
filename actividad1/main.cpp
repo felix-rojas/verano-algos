@@ -55,7 +55,10 @@ std::vector<int> fibonacciIterativo(int n)
 int fibonacciRecursivo(int n)
 {
     if (n <= 1)
-    { // base case
+    // base case is 1 to avoid more looping
+    // also we assume n <= 1 because both f(1) and f(2) are one
+    // we skip f(0) altogether to avoid infinite recursion 
+    { 
         return 1;
     }
     return fibonacciRecursivo(n - 1) + fibonacciRecursivo(n - 2);
@@ -88,7 +91,7 @@ int main()
     f1 = fibonacciIterativo(5);
     f2 = fibonacciIterativo(10);
     f3 = fibonacciIterativo(15);
-    f4 = fibonacciIterativo(20);
+    f4 = fibonacciIterativo(30);
 
     for (int i = 0; i < f1.size(); ++i)
         std::cout << f1[i] << ' ';
@@ -134,7 +137,7 @@ int main()
     std::cout << std::endl;
 
     int n3 = 1;
-    while (n3 <= 20)
+    while (n3 <= 30)
     {
         std::cout << fibonacciRecursivo(n3 - 1) << ' ';
         n3++;
