@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#include <cmath>
 
 /*
     compilation:
@@ -13,7 +12,7 @@
 // Calcule la sumatoria de 1 hasta n con un método iterativo
 int sumaIterativa(int n)
 {
-    int accum = 0; 
+    int accum = 0;
     while (n != 0)
     {
         accum += n;
@@ -32,31 +31,37 @@ int sumaRecursiva(int n)
     return n + sumaRecursiva(n - 1);
 }
 
-// TODO
-// Calcule el n-ésimo numero fibonacci con un método iterativo
+// Enliste hasta el n-ésimo numero fibonacci con un método iterativo
 std::vector<int> fibonacciIterativo(int n)
 {
     std::vector<int> fibo;
-    long a = 1;
-    long b = 1;
+    int a = 1;
+    int b = 1;
     fibo.push_back(a);
     fibo.push_back(b);
     while (n > fibo.size())
     {
-        fibo.push_back(a+=b);
-        fibo.push_back(b+=a);
+        fibo.push_back(a += b);
+        fibo.push_back(b += a);
     }
-    if (n%2!=0){
+    if (n % 2 != 0)
+    {
         fibo.pop_back();
     }
     return fibo;
 }
 
-// TODO
-// Calcule el n-ésimo numero fibonacci con un método recursivo
-int fibonacciRecursivo(long int n)
+// Enliste hasta el n-ésimo numero fibonacci con un método recursivo
+int fibonacciRecursivo(int n)
 {
-    return n;
+    if (n <= 1)
+    { // base case
+        return 1;
+    }
+    return fibonacciRecursivo(n - 1) + fibonacciRecursivo(n - 2);
+    // This code is contributed
+    // by Akanksha Rai
+    // in https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
 }
 
 int main()
@@ -67,7 +72,7 @@ int main()
     std::cout << "2. " << sumaIterativa(50) << std::endl;
     std::cout << "3. " << sumaIterativa(100) << std::endl;
     std::cout << "4. " << sumaIterativa(1000) << std::endl;
-    std::cout <<  std::endl;
+    std::cout << std::endl;
 
     // Suma Recursiva
     std::cout << "sumaRecursiva()" << std::endl;
@@ -75,31 +80,66 @@ int main()
     std::cout << "2. " << sumaRecursiva(50) << std::endl;
     std::cout << "3. " << sumaRecursiva(100) << std::endl;
     std::cout << "4. " << sumaRecursiva(1000) << std::endl;
-    std::cout <<  std::endl;
+    std::cout << std::endl;
 
     // Fibonacci Iterativo
-    std::vector<int> f1,f2,f3,f4,f5; 
+    std::cout << "fibonacciIterativo()" << std::endl;
+    std::vector<int> f1, f2, f3, f4, f5;
     f1 = fibonacciIterativo(5);
     f2 = fibonacciIterativo(10);
     f3 = fibonacciIterativo(15);
     f4 = fibonacciIterativo(20);
-    
-    for (int i=0; i<f1.size(); ++i)
-    std::cout << f1[i] << ' ';
+
+    for (int i = 0; i < f1.size(); ++i)
+        std::cout << f1[i] << ' ';
     std::cout << std::endl;
-    
-    for (int i=0; i<f2.size(); ++i)
-    std::cout << f2[i] << ' ';
+
+    for (int i = 0; i < f2.size(); ++i)
+        std::cout << f2[i] << ' ';
     std::cout << std::endl;
-    
-    for (int i=0; i<f3.size(); ++i)
-    std::cout << f3[i] << ' ';
+
+    for (int i = 0; i < f3.size(); ++i)
+        std::cout << f3[i] << ' ';
     std::cout << std::endl;
-    
-    for (int i=0; i<f4.size(); ++i)
-    std::cout << f4[i] << ' ';
+
+    for (int i = 0; i < f4.size(); ++i)
+        std::cout << f4[i] << ' ';
+    std::cout << std::endl;
     std::cout << std::endl;
 
     // Fibonacci Recursivo
+    std::cout << "fibonacciRecursivo()" << std::endl;
+    int n = 1;
+    while (n <= 5)
+    {
+        std::cout << fibonacciRecursivo(n - 1) << ' ';
+        n++;
+    }
+    std::cout << std::endl;
+
+    int n1 = 1;
+    while (n1 <= 10)
+    {
+        std::cout << fibonacciRecursivo(n1 - 1) << ' ';
+        n1++;
+    }
+    std::cout << std::endl;
+
+    int n2 = 1;
+    while (n2 <= 15)
+    {
+        std::cout << fibonacciRecursivo(n2 - 1) << ' ';
+        n2++;
+    }
+    std::cout << std::endl;
+
+    int n3 = 1;
+    while (n3 <= 20)
+    {
+        std::cout << fibonacciRecursivo(n3 - 1) << ' ';
+        n3++;
+    }
+    std::cout << std::endl;
+
     return 0;
 }
