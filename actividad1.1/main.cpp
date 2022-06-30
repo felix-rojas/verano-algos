@@ -3,9 +3,14 @@
 #include <vector>
 
 /*
-    compilation:
+Integrantes equipo 10:
+>Alexia Castillo Diaz
+>Félix Javier Rojas Gallardo
+>Santiago Vargas Ochoa
+
+    Compilation:
         g++ main.cpp -o a
-    run:
+    Run:
         ./a
 */
 
