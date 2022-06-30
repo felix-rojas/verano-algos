@@ -10,6 +10,8 @@
 */
 
 // Calcule la sumatoria de 1 hasta n con un método iterativo
+// O(n) lineal pues es un único ciclo que depende de la variable
+// control n que disminuye constantemente
 int sumaIterativa(int n)
 {
     int accum = 0;
@@ -22,6 +24,9 @@ int sumaIterativa(int n)
 }
 
 // Calcule la sumatoria de 1 hasta n con un método recursivo
+// el caso big O es en el caso que el if no se cumple
+// la funcion recursiva se llama n veces
+// esto nos indica tiempo linear O(n)
 int sumaRecursiva(int n)
 {
     if (n == 1)
@@ -32,6 +37,10 @@ int sumaRecursiva(int n)
 }
 
 // Enliste hasta el n-ésimo numero fibonacci con un método iterativo
+// O(n) dada que nuestra variable control ejecuta 2 operaciones
+// que se consideran constantes
+// la mayor complejidad está en el ciclo while y podemos asumir
+// O(n) donde n es el tamaño del input
 std::vector<int> fibonacciIterativo(int n)
 {
     std::vector<int> fibo;
@@ -52,6 +61,8 @@ std::vector<int> fibonacciIterativo(int n)
 }
 
 // Enliste hasta el n-ésimo numero fibonacci con un método recursivo
+// El recursivo genera un árbol binario en cada iteración
+// entonces la complejidad Big O será 2^n
 int fibonacciRecursivo(int n)
 {
     if (n <= 1)
@@ -87,7 +98,7 @@ int main()
 
     // Fibonacci Iterativo
     std::cout << "fibonacciIterativo()" << std::endl;
-    std::vector<int> f1, f2, f3, f4, f5;
+    std::vector<int> f1, f2, f3, f4;
     f1 = fibonacciIterativo(5);
     f2 = fibonacciIterativo(10);
     f3 = fibonacciIterativo(15);
