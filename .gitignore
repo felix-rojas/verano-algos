@@ -6,3 +6,7 @@ act01/a.exe
 actividad1/.vscode/c_cpp_properties.json
 actividad1/.vscode/launch.json
 actividad1/.vscode/settings.json
+actividad1.1/a
+*/.vscode
+*.exe
+*.json
