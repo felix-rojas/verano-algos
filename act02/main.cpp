@@ -9,7 +9,7 @@ unsigned int factorialRecursivo(unsigned int n){
     return n * factorialRecursivo(n-1);
 }
 unsigned int factorialIterativo(unsigned int n){
-    int count = n;
+    int count = n;      
     for (int i = 2; i < count; i++)
     {
         n*=i;
