@@ -36,6 +36,9 @@ void swapSort(vector<int> &vector, int &compara, int &nSwaps)
 }
 
 // selectionSort
+// Selection sort moves the least amount of elements compared to any other sort
+// unfortunately its time will always be n^2 both in best case and worst case
+// this is pretty good for moving big files that require lots processing power
 void selectionSort(vector<int> &vector, int &compara, int &nSwaps)
 {
   compara = nSwaps = 0;
@@ -56,6 +59,23 @@ void selectionSort(vector<int> &vector, int &compara, int &nSwaps)
   }
 }
 
+// bubbleSort
+// mueve el elemento mas grande hasta arriba
+
+void bubbleSort(vector<int> &vector, int &compara, int &nSwaps) {
+  compara = nSwaps = 0;
+  for(int i = 0; i < vector.size() - 1; i++) {
+    for(int j = 0; j < vector.size() - i - 1; j++) {
+      compara++;
+      if(vector[j]  > vector[j + 1]) {
+        std::swap(vector[j], vector[j + 1]);
+        nSwaps++;
+      }
+    }
+  }
+}
+
+while (swapped)
 int main(void)
 {
   int i, tmp, size, flag;
