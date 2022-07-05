@@ -1,4 +1,4 @@
-/* 
+/*
     Autores:
     - Felix Javier Rojas Gallardo A01201946@tec.mx
 
@@ -8,7 +8,12 @@
  *  g++ -std=c++17 *.cpp -o main
  *
  * Ejecución:
- *  ./main < TestCases/test01.txt
+ *  ./main < test-cases/test01.txt
+ *  ./main < test-cases/test02.txt
+ *  ./main < test-cases/test03.txt
+ *  ./main < test-cases/test04.txt
+
+ Los tests 1 y 2 funcionan
  */
 
 // Librerias
@@ -36,7 +41,7 @@ int main(void)
 
     // Variables globales
     // le reasignamos valor 0 en cada llamada
-    int swaps, comparaOrden, comparaBusqueda;
+    int swaps, comparaOrden, comparaBusqueda, pos;
 
     cin >> size;
     cout << "Size: " << size << endl;
@@ -67,24 +72,28 @@ int main(void)
         // Busqueda secuencial burbuja
         if (searchFlag == 1)
         {
+            pos = -1;
             swaps, comparaOrden, comparaBusqueda = 0;
             ordenaBurbuja(myVector, comparaOrden, swaps);
             cout << "Numero de comparaciones: " << comparaOrden << endl;
             cout << "Numero de swaps: " << swaps << endl;
 
-            busquedaSecuencialOrd(myVector, key, comparaBusqueda);
+            pos = busquedaSecuencialOrd(myVector, key, comparaBusqueda);
             cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Posicion: " << pos << endl;
         }
         // Busqueda binaria Burbuja
         else if (searchFlag == 2)
         {
+            pos = -1;
             swaps, comparaOrden, comparaBusqueda = 0;
             ordenaBurbuja(myVector, comparaOrden, swaps);
             cout << "Numero de comparaciones: " << comparaOrden << endl;
             cout << "Numero de swaps: " << swaps << endl;
 
-            busquedaBinaria(myVector, key, comparaBusqueda);
+            pos = busquedaBinaria(myVector, key, comparaBusqueda);
             cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Posicion: " << pos << endl;
         }
         break;
 
@@ -93,41 +102,46 @@ int main(void)
         // Busqueda secuencial Merge
         if (searchFlag == 1)
         {
-            swaps, comparaOrden, comparaBusqueda = 0;
+            pos = -1;
+            comparaOrden, comparaBusqueda = 0;
             ordenaMerge(myVector, 0, myVector.size(), comparaOrden);
             cout << "Numero de comparaciones: " << comparaOrden << endl;
-            cout << "Numero de swaps: " << swaps << endl;
+            cout << "Numero de swaps: "
+                 << "No aplica para merge" << endl;
 
-            busquedaSecuencialOrd(myVector, key, comparaBusqueda);
+            pos = busquedaSecuencialOrd(myVector, key, comparaBusqueda);
             cout << "Numero de comparaciones: " << comparaBusqueda << endl;
-        
+            cout << "Posicion: " << pos << endl;
         }
         // Busqueda binaria Merge
         else if (searchFlag == 2)
         {
-            swaps, comparaOrden, comparaBusqueda = 0;
+            pos = -1;
+            comparaOrden, comparaBusqueda = 0;
             ordenaMerge(myVector, 0, myVector.size(), comparaOrden);
             cout << "Numero de comparaciones: " << comparaOrden << endl;
-            cout << "Numero de swaps: " << swaps << endl;
+            cout << "Numero de swaps: "
+                 << "No aplica para merge" << endl;
 
-            busquedaBinaria(myVector, key, comparaBusqueda);
+            pos = busquedaBinaria(myVector, key, comparaBusqueda);
             cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Posicion: " << pos << endl;
         }
         break;
 
-// ! Not done yet, uncomment
-    // // Ordenamiento Quick
-    // case 3:
-    //     // Busqueda secuencial Quick
-    //     if (searchFlag == 1)
-    //     {
-    //         /* code */
-    //     }
-    //     // Busqueda binaria Quick
-    //     else if (searchFlag == 2)
-    //     {
-    //     }
-    //     break;
+        // ! Not done yet, uncomment when programming
+        // // Ordenamiento Quick
+        // case 3:
+        //     // Busqueda secuencial Quick
+        //     if (searchFlag == 1)
+        //     {
+        //         /* code */
+        //     }
+        //     // Busqueda binaria Quick
+        //     else if (searchFlag == 2)
+        //     {
+        //     }
+        //     break;
 
     default:
         cout << "Invalid arguments" << endl;
