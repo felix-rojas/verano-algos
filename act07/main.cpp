@@ -1,103 +1,31 @@
 /*
- * Algoritmos de ordenamiento
+ * Algoritmos de ordenamiento parte 3
+ * 
+ * Compilacion para debug:
+ *    g++ -std=c++17 -g -o main *.cpp
+ * Ejecucion con valgrind:
+ *    nix-env -iA nixpkgs.valgrind
+ *    valgrind --leak-check=full ./main
  *
- * Compilación:
- *  g++ -std=c++17 *.cpp -o main
+ * Compilacion para ejecucion:
+ *    g++ -std=c++17 -O3 -o main *.cpp
+ * Ejecucion:
+ *    ./main
  *
  * Ejecución:
- *  ./main < TestCases/test01.txt
+ *  ./main < TestCases/test02.txt
  */
 
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include "mergeSort.h"
+
 
 using std::cin;
 using std::cout;
 using std::endl;
 using std::vector;
-
-// swapsort
-void swapSort(vector<int> &vector, int &compara, int &nSwaps)
-{
-  compara = nSwaps = 0;
-  for (int i = 0; i < vector.size(); i++)
-  {
-    for (int j = i + 1; j < vector.size(); j++)
-    {
-      compara++;
-      if (vector[i] > vector[j])
-      {
-        std::swap(vector[i], vector[j]);
-        nSwaps++;
-      }
-    }
-  }
-}
-
-// selectionSort
-// Selection sort moves the least amount of elements compared to any other sort
-// unfortunately its time will always be n^2 both in best case and worst case
-// this is pretty good for moving big files that require lots processing power
-void selectionSort(vector<int> &vector, int &compara, int &nSwaps)
-{
-  compara = nSwaps = 0;
-  int minIndex = 0;
-  for (int i = 0; i < vector.size() - 1; i++)
-  {
-    minIndex = i;
-    for (int j = i + 1; j < vector.size(); j++)
-    {
-      compara++;
-      if (vector[j] < vector[minIndex])
-      {
-        minIndex = j;
-      }
-    }
-    std::swap(vector[i], vector[minIndex]);
-    nSwaps++;
-  }
-}
-
-// bubbleSort
-// mueve el elemento mas grande hasta arriba
-
-void bubbleSort(vector<int> &vector, int &compara, int &nSwaps)
-{
-  compara = nSwaps = 0;
-  for (int i = 0; i < vector.size() - 1; i++)
-  {
-    for (int j = 0; j < vector.size() - i - 1; j++)
-    {
-      compara++;
-      if (vector[j] > vector[j + 1])
-      {
-        std::swap(vector[j], vector[j + 1]);
-        nSwaps++;
-      }
-    }
-  }
-}
-
-// Insertion sort
-// mejor caso es preordenado, con la comparación
-// del ciclo for ya no entra al ciclo while
-void insertionSort(vector<int> &vector, int &compara, int &nSwaps) {
-  int j = 0;
-  compara = nSwaps = 0;
-  for (int i = 1; i < vector.size(); i++) {
-    int key = vector[i];
-    j = i-1;
-    compara++;
-    while ( j >= 0 && vector[j] > key) {
-      vector[j+1] = vector[j];
-      j--;
-      nSwaps++;
-      compara++;
-    }
-    vector[j+1] = key;
-  }
-}
 
   int main(void)
   {
