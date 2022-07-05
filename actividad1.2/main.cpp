@@ -6,6 +6,11 @@
  *
  * Compilación:
  *  g++ -std=c++17 *.cpp -o main
+ * 
+ * Debugging:
+ * 
+ *  g++ -std=c++17 *.cpp -g -o main
+ *  valgrind --leak-check=full ./main < test-cases/test02.txt
  *
  * Ejecución:
  *  ./main < test-cases/test01.txt
@@ -36,12 +41,27 @@ using std::vector;
 
 int main(void)
 {
-    // Argumentos
-    int size, orderFlag, searchFlag, key, tmp;
+    // No. de enteros a procesar
+    int size = 0;
+    // Algoritmo de ordenamiento a usar 1. Burbuja, 2. Merge 3. Quick 
+    int orderFlag = 0;
+    // Algoritmo de busqueda a usar 1. Binaria 2. Secuencial
+    int searchFlag = 0; 
+    // Numero a buscar
+    int key = 0; 
+    // Var temporal para el vector
+    int tmp = 0;
 
-    // Variables globales
-    // le reasignamos valor 0 en cada llamada
-    int swaps, comparaOrden, comparaBusqueda, pos;
+    // VARIABLES GLOBALES
+
+    // No. de Intercambios
+    int swaps = 0;
+    // No. de Comparaciones en ordenamiento
+    int comparaOrden = 0;
+    // No. de Comparaciones en busqueda
+    int comparaBusqueda = 0;
+    // Posicion del elemento buscado
+    int pos = 0;
 
     cin >> size;
     cout << "Size: " << size << endl;
@@ -56,7 +76,7 @@ int main(void)
     cout << "Key: " << key << endl;
 
     // Declaración del vector con los números
-    vector<int> myVector;
+    vector<int> myVector(size,0);
 
     // Lectura de los elementos del arreglo
     for (int i = 0; i < size; i++)
@@ -75,11 +95,11 @@ int main(void)
             pos = -1;
             swaps, comparaOrden, comparaBusqueda = 0;
             ordenaBurbuja(myVector, comparaOrden, swaps);
-            cout << "Numero de comparaciones: " << comparaOrden << endl;
+            cout << "Comparaciones al ordenar: " << comparaOrden << endl;
             cout << "Numero de swaps: " << swaps << endl;
 
             pos = busquedaSecuencialOrd(myVector, key, comparaBusqueda);
-            cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Comparaciones al buscar: " << comparaBusqueda << endl;
             cout << "Posicion: " << pos << endl;
         }
         // Busqueda binaria Burbuja
@@ -88,11 +108,11 @@ int main(void)
             pos = -1;
             swaps, comparaOrden, comparaBusqueda = 0;
             ordenaBurbuja(myVector, comparaOrden, swaps);
-            cout << "Numero de comparaciones: " << comparaOrden << endl;
+            cout << "Comparaciones al ordenar: " << comparaOrden << endl;
             cout << "Numero de swaps: " << swaps << endl;
 
             pos = busquedaBinaria(myVector, key, comparaBusqueda);
-            cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Comparaciones al buscar: " << comparaBusqueda << endl;
             cout << "Posicion: " << pos << endl;
         }
         break;
@@ -104,13 +124,12 @@ int main(void)
         {
             pos = -1;
             comparaOrden, comparaBusqueda = 0;
-            ordenaMerge(myVector, 0, myVector.size(), comparaOrden);
-            cout << "Numero de comparaciones: " << comparaOrden << endl;
-            cout << "Numero de swaps: "
-                 << "No aplica para merge" << endl;
+            ordenaMerge(myVector, 0, myVector.size());
+            cout << "Comparaciones al ordenar: " << comparaOrden << endl;
+            cout << "Numero de swaps: " << "No aplica para merge" << endl;
 
             pos = busquedaSecuencialOrd(myVector, key, comparaBusqueda);
-            cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Comparaciones al buscar: " << comparaBusqueda << endl;
             cout << "Posicion: " << pos << endl;
         }
         // Busqueda binaria Merge
@@ -118,13 +137,12 @@ int main(void)
         {
             pos = -1;
             comparaOrden, comparaBusqueda = 0;
-            ordenaMerge(myVector, 0, myVector.size(), comparaOrden);
-            cout << "Numero de comparaciones: " << comparaOrden << endl;
-            cout << "Numero de swaps: "
-                 << "No aplica para merge" << endl;
+            ordenaMerge(myVector, 0, myVector.size());
+            cout << "Comparaciones al ordenar: " << comparaOrden << endl;
+            cout << "Numero de swaps: " << "No aplica para merge" << endl;
 
             pos = busquedaBinaria(myVector, key, comparaBusqueda);
-            cout << "Numero de comparaciones: " << comparaBusqueda << endl;
+            cout << "Comparaciones al buscar: " << comparaBusqueda << endl;
             cout << "Posicion: " << pos << endl;
         }
         break;
