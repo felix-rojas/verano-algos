@@ -4,40 +4,24 @@
 
 using std::vector;
 
-void merge(vector<int> &vector, int low, int mid, int high);
-void ordenaMerge(vector<int> &vector, int low, int high)
+void merge(vector<int> &vector, int low, int m, int high, int &compara)
 {
-    if (low < high)
-    {
-        int mid = low + (high - 1) / 2;
-        ordenaMerge(vector, low, mid);
-        ordenaMerge(vector, mid + 1, high);
-        merge(vector, low, mid, high);
-    }
-}
-
-void merge(vector<int> &vector, int low, int mid, int high)
-{
-    int k;
-    int n1 = mid - low + 1;
-    int n2 = high - mid;
-
+    int i, j, k;
+    int n1 = m - low + 1;
+    int n2 = high - m;
     std::vector<int> L(n1);
     std::vector<int> R(n2);
 
-    for (int i = 0; i < n1; i++)
-        L[i] = L[low + i];
-
-    for (int j = 0; j < n2; j++)
-        R[j] = R[mid + 1 + j];
-
-    int i = 0;
-    int j = 0;
+    for (i = 0; i < n1; i++)
+        L[i] = vector[low + i];
+    for (j = 0; j < n2; j++)
+        R[j] = vector[m + 1 + j];
+    i = j = 0;
     k = low;
-
     while (i < n1 && j < n2)
     {
-        if (L[i] <= R[j])
+        compara++;
+        if (L[i] < R[j])
         {
             vector[k] = L[i];
             i++;
@@ -50,19 +34,31 @@ void merge(vector<int> &vector, int low, int mid, int high)
         k++;
     }
 
-    // Copia elementos de L y luego de R
     while (i < n1)
     {
         vector[k] = L[i];
         i++;
         k++;
     }
-
     while (j < n2)
     {
         vector[k] = R[j];
         j++;
         k++;
+    }
+}
+
+void ordenaMerge(vector<int> &vector, int low, int high, int &compara)
+{
+
+    if (low < high)
+    {
+        int m = (low + high) / 2;
+        // Ordena recursivamente las dos mitades
+        ordenaMerge(vector, low, m, compara);
+        ordenaMerge(vector, m + 1, high, compara);
+        // fusiona las dos mitades
+        merge(vector, low, m, high, compara);
     }
 }
 
