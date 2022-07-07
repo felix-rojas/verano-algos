@@ -1,6 +1,7 @@
 /*
     Autores:
     - Felix Javier Rojas Gallardo A01201946@tec.mx
+    - Alexia Castillo Diaz A00227250@tec.mx
 
  * Algoritmos de busqueda
  *
