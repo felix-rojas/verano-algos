@@ -24,4 +24,5 @@ int busquedaBinaria(vector<int> vectorSorted, int key, int &compara)
     return -1;
 }
 
+
 #endif // busquedaBinaria_H

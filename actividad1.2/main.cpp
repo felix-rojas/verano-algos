@@ -124,7 +124,7 @@ int main(void)
         {
             pos = -1;
             comparaOrden, comparaBusqueda = 0;
-            ordenaMerge(myVector, 0, myVector.size());
+            ordenaMerge(myVector, 0, myVector.size()-1);
             cout << "Comparaciones al ordenar: " << comparaOrden << endl;
             cout << "Numero de swaps: " << "No aplica para merge" << endl;
 
@@ -137,7 +137,7 @@ int main(void)
         {
             pos = -1;
             comparaOrden, comparaBusqueda = 0;
-            ordenaMerge(myVector, 0, myVector.size());
+            ordenaMerge(myVector, 0, myVector.size()-1);
             cout << "Comparaciones al ordenar: " << comparaOrden << endl;
             cout << "Numero de swaps: " << "No aplica para merge" << endl;
 
