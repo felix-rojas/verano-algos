@@ -4,6 +4,9 @@
 
 using std::vector;
 
+// Bubble Sort
+// Complejidad temporal O(n^2) 
+
 void ordenaBurbuja(vector<int> &vector, int &compara, int &nSwaps)
 {
   compara = nSwaps = 0;

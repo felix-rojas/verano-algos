@@ -4,6 +4,8 @@
 
 using std::vector;
 
+// Complejidad O (n)
+
 int busquedaSecuencialOrd(vector<int> vectorSorted, int key, int &compara)
 {
     for (int i = 0; i < vectorSorted.size(); i++)

@@ -5,6 +5,8 @@
 using std::vector;
 
 // busquedaBinaria
+// Complejidad O log(n)
+
 int busquedaBinaria(vector<int> vectorSorted, int key, int &compara)
 {
     int low = 0;

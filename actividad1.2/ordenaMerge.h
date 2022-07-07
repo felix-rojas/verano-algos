@@ -4,6 +4,9 @@
 
 using std::vector;
 
+// Merge Sort
+// Complejidad temporal O(n log n)
+
 void merge(vector<int> &vector, int low, int m, int high, int &compara)
 {
     int i, j, k;

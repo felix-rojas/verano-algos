@@ -1,11 +1,11 @@
 // ordenaQuick
 #ifndef ordenaQuick_H
 #define ordenaQuick_H
-
-// O(n^2)
-
 using std::vector;
 
+
+// QuickSort
+// Complejidad temporal O(n^2)
 // Agarra el elemento del final como pivote y lo mueve
 int partir(vector<int> &vector, int low, int high, int &comparaciones, int &nSwaps)
 {
