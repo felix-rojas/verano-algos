@@ -13,6 +13,14 @@
  * Only LinkedList is able to instantiate a node
  */
 
+
+struct Node
+{
+    int data;     // stored data
+    Node *next; // mem loc of next node
+};
+
+
 template <class T> 
 class LinkedList
 {
@@ -23,43 +31,46 @@ private:
 public:
     LinkedList()
     {
-        head, tail = NULL; // first and last node
-        size = 0;          // initial size
+        head, tail = nullptr; // first and last node
+        size = 0;             // initial size
     }
 
-    void addFirst(T &data)
+    ~LinkedList(){}
+
+    void addFirst(T data)
     {
         // allocate space for node
         Node *tmp = new Node;
         // access tmp's data and set it to data
-        tmp -> data = data;
+        tmp->data = data;
 
-        // if the head NULL, there is no linked list yet
-        if (head == NULL) 
+        // if the head nullptr, there is no linked list yet
+        if (head == nullptr) 
         {
-            tmp -> next = NULL;
+            tmp -> next = nullptr;
             head = tmp; 
-            tail = tmp;
         }
+
         // else there is a linked list
         else
         {
             head -> next = tmp;
             head = head -> next; 
         }
+        size+=1;
     }
 
-    void addLast(T &data)
+    void addLast(T data)
     {
         // instantiate new Node to a tmp
-        Node *tmp = new Node;
+        Node* tmp = new Node;
         // access tmp's data and set it to data
-        tmp->data = data;
-        // set tmp's next as NULL, because it's the last
-        tmp->next = NULL;
+        tmp -> data = data;
+        // set tmp's next as nullptr, because it's the last
+        tmp -> next = nullptr;
 
-        // if the head NULL, there is no linked list yet
-        if (head == NULL) 
+        // if the head nullptr, there is no linked list yet
+        if (head == nullptr) 
         {
             head = tmp; 
             tail = tmp;
