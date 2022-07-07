@@ -114,4 +114,3 @@ cout << a << " " << *p;
 // liberamos ese espacio de memoria
 delete p;
 ```
-

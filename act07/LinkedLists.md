@@ -35,6 +35,4 @@ class LinkedList{
 }
 ```
 
-
 Este código genera una lista encadenada vacía con su única variable "head".
-
