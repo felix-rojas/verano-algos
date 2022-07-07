@@ -19,7 +19,7 @@
  *  ./main < test-cases/test03.txt
  *  ./main < test-cases/test04.txt
 
- Los tests 1 y 2 funcionan
+ Todos los tests funcionan
  */
 
 // Librerias
