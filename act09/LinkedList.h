@@ -73,7 +73,6 @@ public:
         if (head == nullptr) 
         {
             head = tmp; 
-            tail = tmp;
         }
         // else there is a linked list
         else
@@ -82,7 +81,7 @@ public:
             tail = tail -> next; 
         }
         // increase size of LinkedList
-        size++;
+        size+=1;
     }
 
     int getSize()

@@ -25,6 +25,11 @@ int main(void)
     }
 
     std::cout << myList.getSize() << std::endl;
+    
+    for (int i = 0; i < 5; i++)
+    {
+        myList.addLast(i);
+    }
 
     return 0;
 }
