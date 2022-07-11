@@ -1,20 +1,25 @@
 #include "Bitacora.h"
 #include <algorithm>
 #include <iostream>
-#include <unordered_set>>
+#include <unordered_set>
 
 Bitacora::Bitacora() { listaRegistros.resize(0); }
 
 Bitacora::~Bitacora() { listaRegistros.clear(); }
 
-void Bitacora::lecturaDatos(std::string fileName) {
+void Bitacora::lecturaDatos(std::string fileName)
+{
     std::string month, day, hour, minute, second, ipAdd, port, message;
     std::ifstream inputFile(fileName);
-    if (!inputFile.good()) {
+    if (!inputFile.good())
+    {
         inputFile.close();
         throw std::invalid_argument("File not found");
-    } else {
-        while (!inputFile.eof()) {
+    }
+    else
+    {
+        while (!inputFile.eof())
+        {
             // to-do validar que la longitud de month sea mayor a cero
             std::getline(inputFile, month, ' ');
             std::getline(inputFile, day, ' ');
@@ -33,8 +38,10 @@ void Bitacora::lecturaDatos(std::string fileName) {
     }
 }
 
-void Bitacora::print() {
-    for (int i = 0; i < (int) listaRegistros.size(); i++) {
+void Bitacora::print()
+{
+    for (int i = 0; i < (int)listaRegistros.size(); i++)
+    {
         std::cout << listaRegistros[i].getAll() << std::endl;
     }
     std::cout << std::endl;
@@ -44,38 +51,43 @@ void Bitacora::print() {
         std::cout << "menor" << std::endl;
 }
 
-std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin) {
-  std::vector<Registro>resultados;
-  for (int i = 0; i < (int) listaRegistros.size(); i++) {
-        if (listaRegistros[i].getdate()>=inicio && listaRegistros[i].getdate()<=fin ){
-          int lo = 0, hi = listaRegistros.size() - 1;
-        int mid;
-        while (hi - lo > 1) {
+std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
+{
+    std::vector<Registro> resultados;
+    for (int i = 0; i < (int)listaRegistros.size(); i++)
+    {
+        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
+        {
+            int lo = 0, hi = listaRegistros.size() - 1;
+            int mid;
+            while (hi - lo > 1)
+            {
 
-            mid = (hi + lo) / 2;
+                mid = (hi + lo) / 2;
 
-            if (listaRegistros[mid].getdate()) {
-                lo = mid + 1;
-
-            } else {
-                hi = mid;
+                if (listaRegistros[mid].getdate())
+                {
+                    lo = mid + 1;
+                }
+                else
+                {
+                    hi = mid;
+                }
             }
-
-
+            resultados.push_back(listaRegistros[i]);
         }
-resultados.push_back(listaRegistros[i]);
-          
     }
-    }
-  std::sort(resultados.begin(), resultados.end());
-  return resultados;
- }
+    std::sort(resultados.begin(), resultados.end());
+    return resultados;
+}
 
-time_t Bitacora::convertToTime(std::string fecha) {
+time_t Bitacora::convertToTime(std::string fecha)
+{
     std::vector<std::string> fechacom;
     std::string elemento;
     char separador = ' ';
-    for_each(begin(fecha), end(fecha), [&](char const ch) {
+    for_each(begin(fecha), end(fecha), [&](char const ch)
+             {
         if (ch != separador) {
             elemento += ch;
         } else {
@@ -83,18 +95,22 @@ time_t Bitacora::convertToTime(std::string fecha) {
                 fechacom.push_back(elemento);
                 elemento.clear();
             }
-        }
-    });
-    if (elemento.length() > 0) {
+        } });
+    if (elemento.length() > 0)
+    {
         fechacom.push_back(elemento);
     }
     std::string temporal = "";
     std::string hora = fechacom[2];
-    for (int i = 0; i < (int) hora.size(); i++) {
-        if (hora[i] != ':') {
+    for (int i = 0; i < (int)hora.size(); i++)
+    {
+        if (hora[i] != ':')
+        {
             temporal += hora[i];
             fechacom.push_back(temporal);
-        } else {
+        }
+        else
+        {
             temporal = "";
         }
     }
@@ -104,9 +120,11 @@ time_t Bitacora::convertToTime(std::string fecha) {
     dateStruct.tm_min = std::stoi(fechacom[6]);
     dateStruct.tm_hour = std::stoi(fechacom[4]);
     dateStruct.tm_mday = std::stoi(fechacom[1]);
+    
     // Agregado para resolver problema de compatibilidad en Windows
     dateStruct.tm_isdst = 0;
-    for (int i = 0; i < meses.size(); i++) {
+    for (int i = 0; i < meses.size(); i++)
+    {
         if (meses[i] == fechacom[0])
             dateStruct.tm_mon = i;
     }
