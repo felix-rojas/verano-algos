@@ -1,12 +1,12 @@
 /*
- * debug: 
- *   g++ -std=c++17 -g -Wall -o main *.cpp | valgrind --leak-check=full ./main
- * 
  * compilar:
  *   g++ -std=c++17 -Wall -o main *.cpp
  * 
+ * debug for all tests:
+ *   valgrind --leak-check=full ./main < test01.txt | valgrind --leak-check=full ./main < test02.txt | valgrind --leak-check=full ./main < test03.txt 
+ * 
  * ejecutar:
- *   ./main
+ *   ./main < 
  *
  * casos de prueba
  *   ./main < test01.txt > res1.txt | ./main < test02.txt > res2.txt | ./main < test03.txt > res3.txt
@@ -24,8 +24,6 @@ int main()
   myBitacora.lecturaDatos("bitacora.txt");
   // Only use it if you are using shortTest
   // myBitacora.print();
-  
-
 
   std::string inicio;
   std::getline(std::cin, inicio);

@@ -47,14 +47,14 @@ void Bitacora::print()
 }
 
 // ! This is actually linear search using the std cpp library sorting algorithm
-// * It does work but 
-// std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
-// {
-//     std::vector<Registro> resultados;
-//     for (int i = 0; i < (int)listaRegistros.size(); i++)
-//     {
-//         if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
-//         {
+// * It does work though
+std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
+{
+    std::vector<Registro> resultados;
+    for (int i = 0; i < (int)listaRegistros.size(); i++)
+    {
+        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
+        {
 //             // int lo = 0, hi = listaRegistros.size() - 1;
 //             // int mid;
 //             // while (hi - lo > 1)
@@ -71,13 +71,47 @@ void Bitacora::print()
 //             //         hi = mid;
 //             //     }
 //             // }
-//             resultados.push_back(listaRegistros[i]);
-//         }
-//     // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
-//     std::sort(resultados.begin(), resultados.end());
-//     }
-//     return resultados;
-// }
+            resultados.push_back(listaRegistros[i]);
+        }
+    // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
+    std::sort(resultados.begin(), resultados.end());
+    }
+    return resultados;
+}
+
+void Bitacora::organiza(Bitacora& myBitacora){
+    get.
+}
+
+
+std::vector<Registro> Bitacora::busquedaBinaria(time_t inicio, time_t fin)
+{
+    std::vector<Registro> resultados;
+    for (int i = 0; i < (int)listaRegistros.size(); i++)
+    {
+        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
+        {
+//             // int lo = 0, hi = listaRegistros.size() - 1;
+//             // int mid;
+//             // while (hi - lo > 1)
+//             // {
+
+//             //     mid = (hi + lo) / 2;
+
+//             //     if (listaRegistros[mid].getdate())
+//             //     {
+//             //         lo = mid + 1;
+//             //     }
+//             //     else
+//             //     {
+//             //         hi = mid;
+//             //     }
+//             // }
+            resultados.push_back(listaRegistros[i]);
+        }
+    }
+    return resultados;
+}
 
 
 
