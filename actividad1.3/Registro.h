@@ -26,11 +26,19 @@ private:
 
 public:
   Registro();
-  Registro(std::string mes, std::string dia, std::string hora, std::string min, std::string seg, std::string ip, std::string puerto, std::string msg);
+  Registro(std::string mes, std::string dia, 
+           std::string hora, std::string min, 
+           std::string seg, std::string ip, 
+           std::string puerto, std::string msg);
   std::string getAll();
   time_t getdate();
-  bool operator>(const Registro &) const;
-  bool operator<(const Registro &other) const;
+  // sobrecarga operadores
+    bool operator ==(const Registro&) const;
+    bool operator !=(const Registro&) const;
+    bool operator >(const Registro&) const;
+    bool operator <(const Registro&) const;
+    bool operator >=(const Registro&) const;
+    bool operator <=(const Registro&) const;
 };
 
 #endif //_REGISTRO_H_

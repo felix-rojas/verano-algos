@@ -12,7 +12,10 @@ Registro::Registro()
   msg = "";
 }
 
-Registro::Registro(std::string mes, std::string dia, std::string hora, std::string min, std::string seg, std::string ip, std::string puerto, std::string msg)
+Registro::Registro(std::string mes, std::string dia, 
+std::string hora, std::string min, 
+std::string seg, std::string ip, 
+std::string puerto, std::string msg)
 {
   this->mes = mes;
   this->dia = dia;
@@ -42,7 +45,10 @@ Registro::Registro(std::string mes, std::string dia, std::string hora, std::stri
 
 std::string Registro::getAll()
 {
-  return mes + " " + dia + " " + hora + ":" + min + ":" + seg + " " + ip + ":" + puerto + " " + msg + " " + std::to_string(date);
+  return mes + " " + dia + " " + 
+         hora + ":" + min + ":" + 
+         seg + " " + ip + ":" + 
+         puerto + " " + msg + " " + std::to_string(date);
 }
 
 time_t Registro::getdate()
@@ -50,11 +56,27 @@ time_t Registro::getdate()
   return date;
 }
 
-bool Registro::operator>(const Registro &other) const
-{
+
+bool Registro::operator == (const Registro &other) const {
+  return this->date == other.date;
+}
+
+bool Registro::operator != (const Registro &other) const {
+  return this->date != other.date;
+}
+
+bool Registro::operator > (const Registro &other) const {
   return this->date > other.date;
 }
-bool Registro::operator<(const Registro &other) const
-{
+
+bool Registro::operator < (const Registro &other) const {
   return this->date < other.date;
+}
+
+bool Registro::operator<=(const Registro &other) const {
+  return this->date <= other.date;
+}
+
+bool Registro::operator>=(const Registro &other) const {
+  return this->date >= other.date;
 }
