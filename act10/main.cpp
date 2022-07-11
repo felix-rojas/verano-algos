@@ -13,7 +13,7 @@
 **/
 
 #include <iostream>
-#include "DLinkedList.h"
+#include "LinkedList.h"
 
 int main() {
   std::cout << "Ejemplo de listas ligadas\n";
