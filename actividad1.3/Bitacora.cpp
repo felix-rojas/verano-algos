@@ -120,10 +120,10 @@ time_t Bitacora::convertToTime(std::string fecha)
     dateStruct.tm_min = std::stoi(fechacom[6]);
     dateStruct.tm_hour = std::stoi(fechacom[4]);
     dateStruct.tm_mday = std::stoi(fechacom[1]);
-    
+
     // Agregado para resolver problema de compatibilidad en Windows
     dateStruct.tm_isdst = 0;
-    for (int i = 0; i < meses.size(); i++)
+    for (size_t i = 0; i < meses.size(); i++)
     {
         if (meses[i] == fechacom[0])
             dateStruct.tm_mon = i;

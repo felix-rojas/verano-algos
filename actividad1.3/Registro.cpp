@@ -30,7 +30,7 @@ Registro::Registro(std::string mes, std::string dia, std::string hora, std::stri
   dateStruct.tm_mday = std::stoi(dia);
   // Agregado para resolver problema de compatibilidad en Windows
   dateStruct.tm_isdst = 0;
-  for (int i = 0; i < meses.size(); i++)
+  for (size_t i = 0; i < meses.size(); i++)
   {
     if (meses[i] == mes)
       dateStruct.tm_mon = i;

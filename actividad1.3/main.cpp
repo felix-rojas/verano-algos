@@ -9,7 +9,7 @@
 
 #include "Bitacora.h"
 #include <iostream>
-#include <fstream>>
+#include <fstream>
 int main()
 {
 
