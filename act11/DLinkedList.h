@@ -124,10 +124,10 @@ bool DLinkedList<T>::deleteData(T value)
     DLLNode<T> *p = head;
     DLLNode<T> *prev = nullptr;
     // buscar value en la lista
-    while (p != nullptr && p->data != value)
+    while (p != nullptr && p -> data != value)
     {
       prev = p;
-      p = p->next;
+      p = p -> next;
     }
     // si no existe value en la lista
     if (p == nullptr)
@@ -135,16 +135,20 @@ bool DLinkedList<T>::deleteData(T value)
     // Si debe borrarse el primer elemento de la lista
     if (p == head)
     {
-      head = p->next;
+      head = p -> next;
+      if (head != nullptr)
+        head -> prev = nullptr;
     }
+    // borrar ultimo en la lista se mantiene igual
     else if (p->next == nullptr)
-    { // borrar ultimo en la lista
+    { 
       prev->next = nullptr;
-      tail = prev;
+      tail = prev; 
     }
     else
-    {
+    { // cualquier otro elemento
       prev->next = p->next;
+      p->next->prev = p->prev; // actualizamos
     }
     delete p;
     numElements--;
@@ -172,6 +176,7 @@ bool DLinkedList<T>::deleteAt(int position)
     else
     {
       head = p->next;
+      head -> prev = nullptr;
     }
     delete p;
     numElements--;
@@ -197,6 +202,7 @@ bool DLinkedList<T>::deleteAt(int position)
     else
     { // Cualquier otro elemento en medio de la lista
       q->next = p->next;
+      p->next->prev = q; // el next de prev apunta al previo
     }
     delete p;
     numElements--;
