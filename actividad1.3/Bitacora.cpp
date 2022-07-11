@@ -44,42 +44,42 @@ void Bitacora::print()
     {
         std::cout << listaRegistros[i].getAll() << std::endl;
     }
-    std::cout << std::endl;
-    if (listaRegistros[0] > listaRegistros[1])
-        std::cout << "mayor" << std::endl;
-    else
-        std::cout << "menor" << std::endl;
 }
 
-std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
-{
-    std::vector<Registro> resultados;
-    for (int i = 0; i < (int)listaRegistros.size(); i++)
-    {
-        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
-        {
-            int lo = 0, hi = listaRegistros.size() - 1;
-            int mid;
-            while (hi - lo > 1)
-            {
+// ! This is actually linear search using the std cpp library sorting algorithm
+// * It does work but 
+// std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
+// {
+//     std::vector<Registro> resultados;
+//     for (int i = 0; i < (int)listaRegistros.size(); i++)
+//     {
+//         if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
+//         {
+//             // int lo = 0, hi = listaRegistros.size() - 1;
+//             // int mid;
+//             // while (hi - lo > 1)
+//             // {
 
-                mid = (hi + lo) / 2;
+//             //     mid = (hi + lo) / 2;
 
-                if (listaRegistros[mid].getdate())
-                {
-                    lo = mid + 1;
-                }
-                else
-                {
-                    hi = mid;
-                }
-            }
-            resultados.push_back(listaRegistros[i]);
-        }
-    }
-    std::sort(resultados.begin(), resultados.end());
-    return resultados;
-}
+//             //     if (listaRegistros[mid].getdate())
+//             //     {
+//             //         lo = mid + 1;
+//             //     }
+//             //     else
+//             //     {
+//             //         hi = mid;
+//             //     }
+//             // }
+//             resultados.push_back(listaRegistros[i]);
+//         }
+//     // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
+//     std::sort(resultados.begin(), resultados.end());
+//     }
+//     return resultados;
+// }
+
+
 
 time_t Bitacora::convertToTime(std::string fecha)
 {
@@ -95,7 +95,8 @@ time_t Bitacora::convertToTime(std::string fecha)
                 fechacom.push_back(elemento);
                 elemento.clear();
             }
-        } });
+        } 
+        });
     if (elemento.length() > 0)
     {
         fechacom.push_back(elemento);
