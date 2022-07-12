@@ -1,4 +1,6 @@
-# Stacks (Pilas)
+# Stacks (Pilas) y Queues (Filas)
+
+## Stacks
 
 Estructura de datos lineal
 
@@ -8,19 +10,19 @@ El útlimo en entrar es el primero en salir; de modo que entre más pongas en el
 
 Tenemos 2 operaciones básicas al meter y sacar.
 
-## Nivel lógico 
+### Nivel lógico 
 
-### Elementos
+#### Elementos
 
 El tipo de elemento depende de la aplicación
 
-### Estructura
+#### Estructura
 
 De tipo Linear
 
-### Dominio
+#### Dominio
 
-## Operaciones básicas del stack
+#### Operaciones básicas del stack
 
 - push
 - pop
@@ -28,7 +30,7 @@ De tipo Linear
 - isFull
 - isEmpty
 
-## Implementaciones
+### Implementaciones
 
 - Arreglos
 - Listas ligadas
@@ -75,13 +77,36 @@ public void top (){
 
 Las casillas se sobreescriben conforme se usan.
 
-#### Complejidad temporal
+##### Complejidad temporal
 
 Todas sus operaciones son *constantes* O(1)
 
-### Listas ligadas
+#### Listas ligadas
 
 Sólo nos interesa el head de nuestra lista ligada 
 
 Utilizando el addFirst de la lista ligada nos permite meter a la pila en la lista ligada. Esto ahora sería el push mencionado antes
 
+## Queue
+
+Las filas se
+
+### Métodos
+
+enqueue
+dequeue(){
+    int valor = Datos[frente];
+    if (frente == final)
+        frente = final = -1;
+    else
+        frente = (frente+1) % MAX;
+    return valor;
+}
+deleteAt()
+addFirst()
+
+
+### Implementaciones
+
+- Lista ligada simple
+- Lista ligada simple circular
