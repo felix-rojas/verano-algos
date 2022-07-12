@@ -265,10 +265,19 @@ int LinkedList<T>::findData(T value)
   return i;
 }
 
-template <class T>
-void LinkedList<T>::operator=(const LinkedList<T> &lista2)
-  {
-    lista1
-  }  // se llama asi:  lista1 = lista2
+// ! TODO
+// template <class T>
+// LinkedList<T> LinkedList<T>::operator=(const LinkedList<T> &lista2)
+//   {
+//     // is list empty? return empty list
+//     if (head == nullptr) {
+//       ~lista2; //free memory
+//       lista2 = LinkedList(); //create empty ll
+//     }
+//     else {
+
+//       }
+//     }
+//   }  // se llama asi:  lista1 = lista2
 
 #endif // _LINKEDLIST_H_

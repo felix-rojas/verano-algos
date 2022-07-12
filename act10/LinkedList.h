@@ -268,7 +268,14 @@ int LinkedList<T>::findData(T value)
 template <class T>
 void LinkedList<T>::operator=(const LinkedList<T> &lista2)
   {
-    lista1
+    // is list empty? return empty list
+    if (head == nullptr) lista2 = LinkedList();
+    else {
+      Node<T> current = new Node
+      while(head != null){
+
+      }
+    }
   }  // se llama asi:  lista1 = lista2
 
 #endif // _LINKEDLIST_H_
