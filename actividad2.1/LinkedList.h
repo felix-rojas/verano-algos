@@ -27,7 +27,7 @@ public:
   // * needs testing
   int findData(T value);
   // !To-do
-  void operator=(const LinkedList<T> &other);  // se llama asi:  lista1 = lista2
+  void operator=(const LinkedList<T> &other); // se llama asi:  lista1 = lista2
 };
 
 template <class T>
@@ -250,19 +250,21 @@ void LinkedList<T>::updateData(T value, T newValue)
 template <class T>
 void LinkedList<T>::updateAt(T value, T newValue)
 {
-  
 }
 
+// findData es O(n) pues tiene que recorrer todos los nodos
 template <class T>
 int LinkedList<T>::findData(T value)
 {
-  Node<T> *p;
-  int i;
-  while(p -> data != value){
-    if (p -> next == nullptr) return -1;
-    else i++;
+  Node<T> *ptr = head;
+  int pos = 0;
+  while (ptr->next != nullptr && ptr->data != value)
+  {
+    pos++;
+    ptr = ptr->next;
   }
-  return i;
+  if (ptr->data != value) return -1;
+  else return pos;
 }
 
 // ! TODO

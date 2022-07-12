@@ -134,6 +134,14 @@ int main() {
   }  
   miLista.printList();
   std::cout << std::endl; 
+
+  std::cout << "Buscando en array: ";
+  miLista.printList();
+  std::cout << std::endl;
+  std::cout << "Dato 33 se encuentra en pos: "<< miLista.findData(33) << std::endl; 
+  std::cout << "Dato 22 se encuentra en pos: "<< miLista.findData(22) << std::endl; 
+  std::cout << "Dato 1  se encuentra en pos: "<< miLista.findData(1) << std::endl; 
+  std::cout << "Dato 21 se encuentra en pos: "<< miLista.findData(21) << std::endl; 
  
   return 0;
 }
