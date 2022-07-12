@@ -28,6 +28,8 @@ public:
   // void updateAt(int posicion, T newValue);
   // int findData(T value);
   // void operator=(const LinkedList<T> &other);  // se llama asi:  lista1 = lista2
+  // bool deleteData(T value);
+  // bool deleteAt(T value);
 };
 
 template <class T>
