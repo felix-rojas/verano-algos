@@ -24,12 +24,10 @@ public:
   T getData(int position);
   void updateData(T value, T newValue);
   void updateAt(T value, T newValue);
-  // To-do
-  // void updateAt(int posicion, T newValue);
-  // int findData(T value);
-  // void operator=(const LinkedList<T> &other);  // se llama asi:  lista1 = lista2
-  // bool deleteData(T value);
-  // bool deleteAt(T value);
+  // * needs testing
+  int findData(T value);
+  // !To-do
+  void operator=(const LinkedList<T> &other);  // se llama asi:  lista1 = lista2
 };
 
 template <class T>
@@ -254,5 +252,23 @@ void LinkedList<T>::updateAt(T value, T newValue)
 {
   
 }
+
+template <class T>
+int LinkedList<T>::findData(T value)
+{
+  Node<T> *p;
+  int i;
+  while(p -> data != value){
+    if (p -> next == nullptr) return -1;
+    else i++;
+  }
+  return i;
+}
+
+template <class T>
+void LinkedList<T>::operator=(const LinkedList<T> &lista2)
+  {
+    lista1
+  }  // se llama asi:  lista1 = lista2
 
 #endif // _LINKEDLIST_H_
