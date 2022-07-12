@@ -263,23 +263,19 @@ int LinkedList<T>::findData(T value)
     pos++;
     ptr = ptr->next;
   }
-  if (ptr->data != value) return -1;
-  else return pos;
+  if (ptr->data != value)
+    return -1;
+  else
+    return pos;
 }
 
 // ! TODO
-// template <class T>
-// LinkedList<T> LinkedList<T>::operator=(const LinkedList<T> &lista2)
-//   {
-//     // is list empty? return empty list
-//     if (head == nullptr) {
-//       ~lista2; //free memory
-//       lista2 = LinkedList(); //create empty ll
-//     }
-//     else {
-
-//       }
-//     }
-//   }  // se llama asi:  lista1 = lista2
+template <class T>
+void LinkedList<T>::operator=(const LinkedList<T> &other)
+{
+  for (int i = 0; i < other.getNumElements(); i++){
+    other->addLast(i);
+  }
+} // se llama asi:  lista1 = lista2
 
 #endif // _LINKEDLIST_H_
