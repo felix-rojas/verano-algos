@@ -18,3 +18,12 @@ Quicksort tendría un mejor rendimiento para bitácoras de mayor tamaño, especi
 
 ### Búsqueda binaria
 
+- Complejidad espacial de O(1)
+  - Cuando es iterativo
+- Complejidad temporal O( log n)
+
+La búsqueda binaria es perfecta para este caso, dado que los datos a buscar ya están organizados y sólo se necesita encontrar un rango de datos.
+
+En el código utilizamos una versión diferente que imprime el resultado de los registros desde la variable ``inicio``, comparando hasta que sea menor o igual a la variable `fin`
+
+Entonces en complejidad temporal cambia de O( log n) a O (n log n) pues el pero caso sería que el rango establecido abarcara **todos** los registros.
