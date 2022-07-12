@@ -35,29 +35,14 @@ int main()
   std::vector<Registro> resultado = myBitacora.busquedaBinaria(datos, myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
 
 // file-writing
-  // std::ofstream fw("busqueda.txt", std::ofstream::out);
-  // if (fw.is_open())
-  // {
-  //   fw << "Fecha 1: ";
-  //   fw << inicio << "\n";
-  //   fw << "Fecha 2: ";
-  //   fw << fin << "\n";
-  //   fw << "Resultado: " << resultado.size() << "\n";
-  //   for (int i = 0; i < (int)resultado.size(); i++)
-  //   {
-  //     std::cout << resultado[i].getAll() << std::endl;
-  //     fw << resultado[i].getAll() << "\n";
-  //   }
-  //   fw.close();
-  // }
-  // else
-  //   std::cout << "No se pudo crear el archivo :(" << std::endl;
 
   std::ofstream fw("bitacora_ordenada.txt", std::ofstream::out);
   if (fw.is_open())
   {
     
-    fw << "Data search results: " << "\n";
+    fw << "Fecha 1: " << inicio << "\n";
+    fw << "Fecha 2: " << fin << "\n";
+    fw << "Se encontraron: " << resultado.size() << " registros"<< "\n";
     for (int i = 0; i < (int)resultado.size(); i++)
     {
       fw << resultado[i].getAll() << "\n";

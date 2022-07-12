@@ -1,4 +1,6 @@
-Searched data results: 
+Se encontraron: 45 registros
+Fecha 1: Jun 01 00:22:36
+Fecha 2: Jun 01 08:23:57
 Jun 01 00:34:43 254.243.231.221:7416 Failed password for illegal user guest 1654065283
 Jun 01 00:49:31 15.113.211.66:1795 Failed password for illegal user root 1654066171
 Jun 01 00:59:02 159.72.70.232:99 Failed password for illegal user guest 1654066742
@@ -44,7 +46,8 @@ Jun 01 08:15:33 126.3.164.87:2407 Failed password for illegal user guest 1654092
 Jun 01 08:20:27 53.198.233.139:6880 Illegal user 1654093227
 Jun 01 08:23:57 11.105.45.36:4225 Failed password for admin 1654093437
 Jun 01 08:43:04 76.75.115.27:500 Failed password for admin 1654094584
-Sorted data: 16808
+---  ALL SORTED DATA ---
+Total registries: 16808
 Month Day HH:MM:SS IP:PORT Message Unixtime
 Jun 01 00:22:36 49.121.182.153:6021 Failed password for illegal user guest 1654064556
 Jun 01 00:34:43 254.243.231.221:7416 Failed password for illegal user guest 1654065283
