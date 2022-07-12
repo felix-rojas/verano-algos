@@ -52,68 +52,94 @@ std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
 {
     std::vector<Registro> resultados;
     for (int i = 0; i < (int)listaRegistros.size(); i++)
-    {
+    { // filtra resultados
         if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
-        {
-//             // int lo = 0, hi = listaRegistros.size() - 1;
-//             // int mid;
-//             // while (hi - lo > 1)
-//             // {
-
-//             //     mid = (hi + lo) / 2;
-
-//             //     if (listaRegistros[mid].getdate())
-//             //     {
-//             //         lo = mid + 1;
-//             //     }
-//             //     else
-//             //     {
-//             //         hi = mid;
-//             //     }
-//             // }
+        { // almacena resultados
             resultados.push_back(listaRegistros[i]);
         }
-    // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
-    std::sort(resultados.begin(), resultados.end());
+        // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
+        // se puede usar el sort pues es un vector con iterador
+        std::sort(resultados.begin(), resultados.end());
     }
     return resultados;
 }
 
-void Bitacora::organiza(Bitacora& myBitacora){
-    get.
+void Bitacora::merge(std::vector<Registro> &listaRegistros, int low, int m, int high)
+{
+    int i, j, k;
+    int n1 = m - low + 1;
+    int n2 = high - m;
+    std::vector<Registro> L(n1);
+    std::vector<Registro> R(n2);
+
+    for (i = 0; i < n1; i++)
+        L[i] = listaRegistros[low + i];
+    for (j = 0; j < n2; j++)
+        R[j] = listaRegistros[m + 1 + j];
+    i = j = 0;
+    k = low;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] < R[j])
+        {
+            listaRegistros[k] = L[i];
+            i++;
+        }
+        else
+        {
+            listaRegistros[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    // Se encargan de los elementos sobrantes
+    while (i < n1)
+    {
+        listaRegistros[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < n2)
+    {
+        listaRegistros[k] = R[j];
+        j++;
+        k++;
+    }
 }
 
+void Bitacora::mergeSort(std::vector<Registro> &listaRegistros, int low, int high)
+{
+    if (low < high)
+    {
+        int m = (low + high) / 2;
+        // Ordena recursivamente las dos mitades
+        mergeSort(listaRegistros, low, m);
+        mergeSort(listaRegistros, m + 1, high);
+        // fusiona las dos mitades
+        merge(listaRegistros, low, m, high);
+    }
+}
 
+// binarySearch iterativa
 std::vector<Registro> Bitacora::busquedaBinaria(time_t inicio, time_t fin)
 {
     std::vector<Registro> resultados;
-    for (int i = 0; i < (int)listaRegistros.size(); i++)
+    int low = 0;
+    int high = listaRegistros.size() - 1;
+    int mid = 0;
+    while (low <= high)
     {
-        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
-        {
-//             // int lo = 0, hi = listaRegistros.size() - 1;
-//             // int mid;
-//             // while (hi - lo > 1)
-//             // {
+        mid = low + (high - low) / 2;
+        if (inicio == listaRegistros[mid].getdate())
+            resultados.push_back(listaRegistros[mid]);
 
-//             //     mid = (hi + lo) / 2;
-
-//             //     if (listaRegistros[mid].getdate())
-//             //     {
-//             //         lo = mid + 1;
-//             //     }
-//             //     else
-//             //     {
-//             //         hi = mid;
-//             //     }
-//             // }
-            resultados.push_back(listaRegistros[i]);
-        }
+        else if (inicio < listaRegistros[mid].getdate())
+            high = mid - 1;
+        else
+            low = mid + 1;
     }
     return resultados;
 }
-
-
 
 time_t Bitacora::convertToTime(std::string fecha)
 {
@@ -129,8 +155,7 @@ time_t Bitacora::convertToTime(std::string fecha)
                 fechacom.push_back(elemento);
                 elemento.clear();
             }
-        } 
-        });
+        } });
     if (elemento.length() > 0)
     {
         fechacom.push_back(elemento);

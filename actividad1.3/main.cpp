@@ -29,8 +29,9 @@ int main()
   std::getline(std::cin, inicio);
   std::string fin;
   std::getline(std::cin, fin);
-  myBitacora.busqueda(myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
-  std::vector<Registro> resultado = myBitacora.busqueda(myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
+  myBitacora.mergeSort(myBitacora.getLista(), 0, myBitacora.getSize()-1);
+  myBitacora.busquedaBinaria(myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
+  std::vector<Registro> resultado = myBitacora.busquedaBinaria(myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
 
 // file-writing
   std::ofstream fw("bitacora_ordenada.txt", std::ofstream::out);

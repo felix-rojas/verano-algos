@@ -26,17 +26,31 @@ public:
   // constructor & destructor
   Bitacora();
   ~Bitacora();
+
+  //getter
+  std::vector<Registro> getLista() { return listaRegistros;}
+
+  // bitacora size
+  int getSize() {return listaRegistros.size();}
+
   // file reading
   void lecturaDatos(std::string fileName);
+
   // std::cout for class, displays in terminal
   void print();
+
   // linear search
   std::vector<Registro> busqueda(time_t inicio, time_t fin); 
+
   // converts string to Unix time
   time_t convertToTime(std::string fecha);
-  // sorting algorithm that reads the file
+  
+  // merge sorting algorithm that reads the file
   void Bitacora::organiza(Bitacora& miBitacora);
+  void Bitacora::merge(std::vector<Registro> &listaRegistros, int low, int m, int high);
+  void Bitacora::mergeSort(std::vector<Registro> &listaRegistros, int low, int high);
+  
   // binary search
   std::vector<Registro> Bitacora::busquedaBinaria(time_t inicio, time_t fin);
-
+};
 #endif // _BITACORA_H_
