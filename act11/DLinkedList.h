@@ -1,20 +1,20 @@
-#ifndef _LINKEDLIST_H_
-#define _LINKEDLIST_H_
+#ifndef _DLINKEDLIST_H_
+#define _DLINKEDLIST_H_
 
-#include "Node.h"
+#include "DLLNode.h"
 #include <iostream>
 
 template <class T>
-class LinkedList
+class DLinkedList
 {
 private:
-  Node<T> *head;
-  Node<T> *tail;
+  DLLNode<T> *head;
+  DLLNode<T> *tail;
   int numElements;
 
 public:
-  LinkedList();
-  ~LinkedList();
+  DLinkedList();
+  ~DLinkedList();
   int getNumElements();
   void printList();
   void addFirst(T value);
@@ -24,14 +24,16 @@ public:
   T getData(int position);
   void updateData(T value, T newValue);
   void updateAt(T value, T newValue);
-  // * needs testing
-  int findData(T value);
-  // !To-do
-  void operator=(const LinkedList<T> &other); // se llama asi:  lista1 = lista2
+  // ! TODO
+  // * sort https://www.geeksforgeeks.org/quicksort-for-linked-list/
+  // * invert
+  // * get reverse
+
+
 };
 
 template <class T>
-LinkedList<T>::LinkedList()
+DLinkedList<T>::DLinkedList()
 {
   std::cout << "--- Creando una lista vacia --- " << &head << std::endl;
   head = nullptr;
@@ -40,10 +42,10 @@ LinkedList<T>::LinkedList()
 }
 
 template <class T>
-LinkedList<T>::~LinkedList()
+DLinkedList<T>::~DLinkedList()
 {
   std::cout << "--- Liberando memoria de la lista --- " << &head << std::endl;
-  Node<T> *prev, *q;
+  DLLNode<T> *prev, *q;
   prev = head;
   while (prev != nullptr)
   {
@@ -57,15 +59,15 @@ LinkedList<T>::~LinkedList()
 }
 
 template <class T>
-int LinkedList<T>::getNumElements()
+int DLinkedList<T>::getNumElements()
 {
   return numElements;
 }
 
 template <class T>
-void LinkedList<T>::printList()
+void DLinkedList<T>::printList()
 {
-  Node<T> *ptr = head;
+  DLLNode<T> *ptr = head;
   while (ptr != nullptr)
   {
     std::cout << ptr->data << " ";
@@ -75,26 +77,28 @@ void LinkedList<T>::printList()
 }
 
 template <class T>
-void LinkedList<T>::addFirst(T value)
+void DLinkedList<T>::addFirst(T value)
 {
   // creando un nuevo nodo de la lista
-  Node<T> *newNode = new Node<T>(value);
+  DLLNode<T> *newDLLNode = new DLLNode<T>(value);
   // Si la lista esta vacia if(head == nullptr)
   if (numElements == 0)
   {
-    head = newNode;
-    tail = newNode;
+    head = newDLLNode;
+    tail = newDLLNode;
   }
   else
   {
-    newNode->next = head;
-    head = newNode;
+    newDLLNode->next = head;
+    head -> prev = newDLLNode;
+    head = newDLLNode;
+
   }
   numElements++;
 }
 
 template <class T>
-void LinkedList<T>::addLast(T value)
+void DLinkedList<T>::addLast(T value)
 {
   // Si la lista esta vacia if(head == nullptr)
   if (numElements == 0)
@@ -104,15 +108,16 @@ void LinkedList<T>::addLast(T value)
   else
   {
     // creando un nuevo nodo de la lista
-    Node<T> *newNode = new Node<T>(value);
-    tail->next = newNode;
-    tail = newNode;
+    DLLNode<T> *newDLLNode = new DLLNode<T>(value);
+    tail->next = newDLLNode;
+    newDLLNode->prev = tail; // update for the DLL 
+    tail = newDLLNode;
     numElements++;
   }
 }
 
 template <class T>
-bool LinkedList<T>::deleteData(T value)
+bool DLinkedList<T>::deleteData(T value)
 {
   bool estado = false;
   // Si la lista esta vacia
@@ -122,13 +127,13 @@ bool LinkedList<T>::deleteData(T value)
   }
   else
   {
-    Node<T> *p = head;
-    Node<T> *prev = nullptr;
+    DLLNode<T> *p = head;
+    DLLNode<T> *prev = nullptr;
     // buscar value en la lista
-    while (p != nullptr && p->data != value)
+    while (p != nullptr && p -> data != value)
     {
       prev = p;
-      p = p->next;
+      p = p -> next;
     }
     // si no existe value en la lista
     if (p == nullptr)
@@ -136,16 +141,20 @@ bool LinkedList<T>::deleteData(T value)
     // Si debe borrarse el primer elemento de la lista
     if (p == head)
     {
-      head = p->next;
+      head = p -> next;
+      if (head != nullptr)
+        head -> prev = nullptr;
     }
+    // borrar ultimo en la lista se mantiene igual
     else if (p->next == nullptr)
-    { // borrar ultimo en la lista
+    { 
       prev->next = nullptr;
-      tail = prev;
+      tail = prev; 
     }
     else
-    {
+    { // cualquier otro elemento
       prev->next = p->next;
+      p->next->prev = p->prev; // actualizamos
     }
     delete p;
     numElements--;
@@ -155,7 +164,7 @@ bool LinkedList<T>::deleteData(T value)
 }
 
 template <class T>
-bool LinkedList<T>::deleteAt(int position)
+bool DLinkedList<T>::deleteAt(int position)
 {
   if (position < 0 || position >= numElements)
   {
@@ -163,7 +172,7 @@ bool LinkedList<T>::deleteAt(int position)
   }
   else if (position == 0)
   { // Si debe borrarse el primer elemento
-    Node<T> *p = head;
+    DLLNode<T> *p = head;
     // Si la lista contiene solo un nodo
     if (head != nullptr && head->next == nullptr)
     {
@@ -173,6 +182,7 @@ bool LinkedList<T>::deleteAt(int position)
     else
     {
       head = p->next;
+      head -> prev = nullptr;
     }
     delete p;
     numElements--;
@@ -180,7 +190,7 @@ bool LinkedList<T>::deleteAt(int position)
   }
   else
   { // Si la lista contiene mas de un nodo
-    Node<T> *p = head, *q = nullptr;
+    DLLNode<T> *p = head, *q = nullptr;
     int index = 0;
     // Se busca el indice del elemento a borrar
     while (index != position)
@@ -198,6 +208,7 @@ bool LinkedList<T>::deleteAt(int position)
     else
     { // Cualquier otro elemento en medio de la lista
       q->next = p->next;
+      p->next->prev = q; // el next de prev apunta al previo
     }
     delete p;
     numElements--;
@@ -206,7 +217,7 @@ bool LinkedList<T>::deleteAt(int position)
 }
 
 template <class T>
-T LinkedList<T>::getData(int position)
+T DLinkedList<T>::getData(int position)
 {
   if (position < 0 || position >= numElements)
   {
@@ -216,7 +227,7 @@ T LinkedList<T>::getData(int position)
   {
     if (position == 0)
       return head->data;
-    Node<T> *p = head;
+    DLLNode<T> *p = head;
     int index = 0;
     while (p != nullptr)
     {
@@ -230,12 +241,12 @@ T LinkedList<T>::getData(int position)
 }
 
 template <class T>
-void LinkedList<T>::updateData(T value, T newValue)
+void DLinkedList<T>::updateData(T value, T newValue)
 {
   if (numElements > 0)
   {
-    Node<T> *p = head;
-    Node<T> *prev = nullptr;
+    DLLNode<T> *p = head;
+    DLLNode<T> *prev = nullptr;
     while (p != nullptr && p->data != value)
     {
       prev = p;
@@ -248,34 +259,9 @@ void LinkedList<T>::updateData(T value, T newValue)
   }
 }
 template <class T>
-void LinkedList<T>::updateAt(T value, T newValue)
+void DLinkedList<T>::updateAt(T value, T newValue)
 {
+
 }
 
-// findData es O(n) pues tiene que recorrer todos los nodos
-template <class T>
-int LinkedList<T>::findData(T value)
-{
-  Node<T> *ptr = head;
-  int pos = 0;
-  while (ptr->next != nullptr && ptr->data != value)
-  {
-    pos++;
-    ptr = ptr->next;
-  }
-  if (ptr->data != value)
-    return -1;
-  else
-    return pos;
-}
-
-// ! TODO
-template <class T>
-void LinkedList<T>::operator=(const LinkedList<T> &other)
-{
-  for (int i = 0; i < other.getNumElements(); i++){
-    other->addLast(i);
-  }
-} // se llama asi:  lista1 = lista2
-
-#endif // _LINKEDLIST_H_
+#endif // _DLINKEDLIST_H_

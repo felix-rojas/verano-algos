@@ -13,7 +13,7 @@
 **/
 
 #include <iostream>
-#include "LinkedList.h"
+#include "DLinkedList.h"
 
 int main() {
   std::cout << "Ejemplo de listas ligadas\n";
@@ -134,32 +134,6 @@ int main() {
   }  
   miLista.printList();
   std::cout << std::endl; 
-
-  std::cout << "Buscando en array: ";
-  miLista.printList();
-  std::cout << std::endl;
-  std::cout << "Dato 33 se encuentra en pos: "<< miLista.findData(33) << std::endl; 
-  std::cout << "Dato 22 se encuentra en pos: "<< miLista.findData(22) << std::endl; 
-  std::cout << "Dato 1  se encuentra en pos: "<< miLista.findData(1) << std::endl; 
-  std::cout << "Dato 21 se encuentra en pos: "<< miLista.findData(21) << std::endl; 
-  
-  
-  LinkedList<int> lista1;
-  // addFirst
-  std::cout << "Agregando 5 elementos al final..." << std::endl;
-  for (int i = 1; i < 6; i++) {
-    lista1.addLast(i);
-  }
-  std::cout << "numElements lista1: " << lista1.getNumElements() << std::endl;
-  lista1.printList();
-  std::cout << std::endl;
-
-  LinkedList<int> lista2 = lista1;
-  std::cout << "numElements: " << lista2.getNumElements() << std::endl;
-  std::cout << "numElements: " << lista2.getNumElements() << std::endl;
-  lista2.printList();
-  std::cout << std::endl;
-
-
+ 
   return 0;
 }
