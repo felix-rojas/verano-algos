@@ -24,6 +24,12 @@ public:
   T getData(int position);
   void updateData(T value, T newValue);
   void updateAt(T value, T newValue);
+  // ! TODO
+  // * sort https://www.geeksforgeeks.org/quicksort-for-linked-list/
+  // * invert
+  // * get reverse
+
+
 };
 
 template <class T>
