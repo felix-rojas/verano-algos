@@ -32,7 +32,7 @@ int main()
   std::vector<Registro> datos = myBitacora.getLista();
   myBitacora.mergeSort(datos, 0, myBitacora.getSize()-1);
 
-  std::vector<Registro> resultado = myBitacora.busquedaBinaria(myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
+  std::vector<Registro> resultado = myBitacora.busquedaBinaria(datos, myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
 
 // file-writing
   // std::ofstream fw("busqueda.txt", std::ofstream::out);
@@ -56,7 +56,15 @@ int main()
   std::ofstream fw("bitacora_ordenada.txt", std::ofstream::out);
   if (fw.is_open())
   {
-    fw << "Sorted data: " << datos.size() << "\n";
+    
+    fw << "Data search results: " << "\n";
+    for (int i = 0; i < (int)resultado.size(); i++)
+    {
+      fw << resultado[i].getAll() << "\n";
+    }
+    
+    fw << "---  ALL SORTED DATA ---" << "\n"; 
+    fw << "Total registries: "<< datos.size() << "\n";
     fw << "Month Day HH:MM:SS IP:PORT Message Unixtime" << "\n";
     for (int i = 0; i < (int)datos.size(); i++)
     {

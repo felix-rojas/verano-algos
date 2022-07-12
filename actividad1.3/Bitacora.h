@@ -51,6 +51,6 @@ public:
   void mergeSort(std::vector<Registro> &listaRegistros, int low, int high);
   
   // binary search
-  std::vector<Registro> busquedaBinaria(time_t inicio, time_t fin);
+  std::vector<Registro> busquedaBinaria(std::vector<Registro> sortedVec, time_t inicio, time_t fin);
 };
 #endif // _BITACORA_H_

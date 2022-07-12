@@ -1,7 +1,6 @@
 #include "Bitacora.h"
 #include <algorithm>
 #include <iostream>
-#include <unordered_set>
 
 Bitacora::Bitacora() { listaRegistros.resize(0); }
 
@@ -121,23 +120,34 @@ void Bitacora::mergeSort(std::vector<Registro> &listaRegistros, int low, int hig
 }
 
 // binarySearch iterativa
-std::vector<Registro> Bitacora::busquedaBinaria(time_t inicio, time_t fin)
+std::vector<Registro> Bitacora::busquedaBinaria(std::vector<Registro> sortedVec, time_t inicio, time_t fin)
 {
     std::vector<Registro> resultados;
     int low = 0;
-    int high = listaRegistros.size() - 1;
+    int high = sortedVec.size() - 1;
     int mid = 0;
+    int found = 0;
+
+    // find inicio
     while (low <= high)
     {
         mid = low + (high - low) / 2;
-        if (inicio == listaRegistros[mid].getdate())
-            resultados.push_back(listaRegistros[mid]);
+        if (inicio == sortedVec[mid].getdate()){
+            while (sortedVec[mid].getdate() <= fin)
+            {
+                mid++;
+                resultados.push_back(sortedVec[mid]);
+            }
+            return resultados;
+            break;
+        }
 
-        else if (inicio < listaRegistros[mid].getdate())
+        else if (inicio < sortedVec[mid].getdate())
             high = mid - 1;
         else
             low = mid + 1;
     }
+    std::cout << "Not Found " << found << std::endl;
     return resultados;
 }
 
