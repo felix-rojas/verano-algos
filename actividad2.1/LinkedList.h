@@ -23,11 +23,9 @@ public:
   bool deleteAt(int posicion);
   T getData(int position);
   void updateData(T value, T newValue);
-  void updateAt(T value, T newValue);
-  // * needs testing
+  void updateAt(T pos, T newValue);
   int findData(T value);
-  // !To-do
-  void operator=(const LinkedList<T> &other); // se llama asi:  lista1 = lista2
+  void operator=(const LinkedList<T>& other); // se llama asi:  lista1 = lista2
 };
 
 template <class T>
@@ -248,8 +246,24 @@ void LinkedList<T>::updateData(T value, T newValue)
   }
 }
 template <class T>
-void LinkedList<T>::updateAt(T value, T newValue)
+void LinkedList<T>::updateAt(T pos, T newValue)
 {
+   if (pos < 0 || pos >= numElements)
+  {
+    throw std::out_of_range("Indice fuera de rango");
+  }
+  else
+  {
+    if (pos == 0) head->data = newValue;
+    Node<T> *p = head;
+    int index = 0;
+    while (p != nullptr)
+    {
+      if (index == pos) p->data = newValue;
+      index++;
+      p = p->next;
+    }
+  }
 }
 
 // findData es O(n) pues tiene que recorrer todos los nodos
@@ -271,10 +285,13 @@ int LinkedList<T>::findData(T value)
 
 // ! TODO
 template <class T>
-void LinkedList<T>::operator=(const LinkedList<T> &other)
+void LinkedList<T>::operator= (const LinkedList<T>& other)
 {
-  for (int i = 0; i < other.getNumElements(); i++){
-    other->addLast(i);
+  Node<T> *ptr = head;
+  int count = other.numElements;
+  while (count > 0)
+  {
+    other.addLast()
   }
 } // se llama asi:  lista1 = lista2
 

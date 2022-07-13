@@ -135,6 +135,10 @@ int main() {
   miLista.printList();
   std::cout << std::endl; 
 
+  std::cout << std::endl;
+  
+  std::cout << "--- METODOS ACT 2.1 ---" << std::endl;
+
   std::cout << "Buscando en array: ";
   miLista.printList();
   std::cout << std::endl;
@@ -145,7 +149,8 @@ int main() {
   
   
   LinkedList<int> lista1;
-  // addFirst
+  LinkedList<int> lista2;
+  
   std::cout << "Agregando 5 elementos al final..." << std::endl;
   for (int i = 1; i < 6; i++) {
     lista1.addLast(i);
@@ -154,12 +159,16 @@ int main() {
   lista1.printList();
   std::cout << std::endl;
 
-  LinkedList<int> lista2 = lista1;
+  lista2 = lista1;
   std::cout << "numElements: " << lista2.getNumElements() << std::endl;
   std::cout << "numElements: " << lista2.getNumElements() << std::endl;
-  lista2.printList();
   std::cout << std::endl;
 
+  // UPDATE AT test con lista 1
+  lista2.updateAt(1,12);
+  lista1.printList();
+  // lista2 es un objeto diferente pero apunta a
+  lista2.printList(); 
 
   return 0;
 }
