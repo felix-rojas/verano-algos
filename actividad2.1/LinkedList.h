@@ -25,7 +25,7 @@ public:
   void updateData(T value, T newValue);
   void updateAt(T pos, T newValue);
   int findData(T value);
-  void operator=(const LinkedList<T>& other); // se llama asi:  lista1 = lista2
+  T operator=(const LinkedList<T>& other); // se llama asi:  lista1 = lista2
 };
 
 template <class T>
@@ -284,15 +284,21 @@ int LinkedList<T>::findData(T value)
 }
 
 // ! TODO
+// este es O(n) pues se recorren todos los nodos y se sobreescriben 
 template <class T>
-void LinkedList<T>::operator= (const LinkedList<T>& other)
+T LinkedList<T>::operator= (const LinkedList<T>& other)
 {
-  Node<T> *ptr = head;
-  int count = other.numElements;
-  while (count > 0)
-  {
-    other.addLast()
-  }
-} // se llama asi:  lista1 = lista2
+//   Node<T> *ptrO = head;
+//   Node<T> *ptrP = T.head;
+//   T.numElements = numElements;
+//   int count = numElements;
+//   while (ptrO->next != nullptr && count != 0)
+//   {
+//     ptrP->data = ptrO->data;
+//     ptrO = ptrO->next;
+//     ptrP = ptrP->next;
+//     count--;
+//   }
+}
 
 #endif // _LINKEDLIST_H_
