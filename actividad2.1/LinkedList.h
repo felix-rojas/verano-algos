@@ -13,19 +13,20 @@ private:
   int numElements;
 
 public:
-  LinkedList();
-  ~LinkedList();
-  int getNumElements();
-  void printList();
-  void addFirst(T value);
-  void addLast(T value);
-  bool deleteData(T value);
-  bool deleteAt(int posicion);
-  T getData(int position);
-  void updateData(T value, T newValue);
-  void updateAt(T pos, T newValue);
-  int findData(T value);
-  T operator=(const LinkedList<T>& other); // se llama asi:  lista1 = lista2
+  LinkedList(); // O(1)
+  ~LinkedList(); // O(n)
+  int getNumElements(); // O(1)
+  void printList(); // O(n)
+  void addFirst(T value); // O(1)
+  void addLast(T value); // O(1)
+  bool deleteData(T value); // O(n)
+  bool deleteAt(int posicion); // O(n)
+  T getData(int position); // O(n)
+  void updateData(T value, T newValue); // O(n)
+  void updateAt(T pos, T newValue); // O(n)
+  int findData(T value); // O(n)
+  // se llama asi:  lista1 = lista2 
+  T operator=(const LinkedList<T>& other);  // O(n)
 };
 
 template <class T>
