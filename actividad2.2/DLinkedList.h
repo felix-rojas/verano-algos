@@ -24,8 +24,7 @@ public:
   T getData(int position);
   void updateData(T value, T newValue);
   void updateAt(T pos, T newValue); // O(n)
-  void quickSort(DLinkedList<T> a, int low, int high);
-  int partition(DLinkedList<T> a, int low, int high);
+  void partition();
   void sort();
   // ! TODO
   // * sort https://www.geeksforgeeks.org/quicksort-for-linked-list/
@@ -229,15 +228,15 @@ T DLinkedList<T>::getData(int position)
       return head->data;
     DLLNode<T> *p = head;
     int index = 0;
-    while (p != nullptr)
+    while (p->next != nullptr)
     {
       if (index == position)
         return p->data;
       index++;
       p = p->next;
     }
-    return {};
   }
+  return {};
 }
 
 template <class T>
@@ -277,48 +276,6 @@ void DLinkedList<T>::updateAt(T pos, T newValue)
       index++;
       p = p->next;
     }
-  }
-}
-
-template <class T>
-void DLinkedList<T>::sort()
-{
-  int high = this->getNumElements();
-  quickSort(*this, 0, high);
-}
-
-template <class T>
-int DLinkedList<T>::partition(DLinkedList<T> a, int low, int high)
-{
-  int pivot = a.getData(high);
-  int i = low - 1;
-  T temp;
-
-  for (int j = low; j < high; j++)
-  {
-    if (a.getData(j) < pivot)
-    {
-      i += 1;
-      temp = a.getData(i);
-      a.updateAt(i, a.getData(j));
-      a.updateAt(j, temp);
-    }
-  }
-
-  temp = a.getData(i + 1);
-  a.updateAt(i+1, a.getData(high));
-  a.updateAt(high, temp);
-  return i + 1;
-}
-
-template <class T>
-void DLinkedList<T>::quickSort(DLinkedList<T> a, int low, int high)
-{
-  if (low < high)
-  {
-    int pi = partition(a, int low, int high);
-    quickSort(a, low, mid);
-    quickSort(a, mid + 1, high);
   }
 }
 

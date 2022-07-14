@@ -149,7 +149,7 @@ int main() {
   
   
   LinkedList<int> lista1;
-  LinkedList<int> lista2 = lista1;
+  LinkedList<int> lista2;
   
   
   std::cout << "Agregando 5 elementos al final..." << std::endl;
@@ -163,6 +163,23 @@ int main() {
   // UPDATE AT test con lista 1
   lista1.updateAt(1,12);
   lista1.printList();
+
+  std::cout << "Agregando 7 elementos al final de lista2..." << std::endl;
+  for (int i = 7; i > 0; i--) {
+    lista2.addLast(i);
+  }
+  lista2.printList();
+  std::cout << std::endl;
+  
+  std::cout << "Asignando lista1 a lista2..." << std::endl;
+  lista2 = lista1;
+  lista2.printList();
+  std::cout << std::endl;
+  
+  lista2.updateAt(2,12);
+  lista2.printList();
+  lista1.printList();
+
 
   return 0;
 }

@@ -134,8 +134,8 @@ int main() {
   }  
   miLista.printList();
   std::cout << std::endl; 
+  std::cout << std::endl; 
 
-  miLista.sort();
   miLista.printList();
   std::cout << std::endl; 
   return 0;

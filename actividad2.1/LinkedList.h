@@ -13,20 +13,20 @@ private:
   int numElements;
 
 public:
-  LinkedList(); // O(1)
-  ~LinkedList(); // O(n)
-  int getNumElements(); // O(1)
-  void printList(); // O(n)
-  void addFirst(T value); // O(1)
-  void addLast(T value); // O(1)
-  bool deleteData(T value); // O(n)
-  bool deleteAt(int posicion); // O(n)
-  T getData(int position); // O(n)
+  LinkedList();                         // O(1)
+  ~LinkedList();                        // O(n)
+  int getNumElements();                 // O(1)
+  void printList();                     // O(n)
+  void addFirst(T value);               // O(1)
+  void addLast(T value);                // O(1)
+  bool deleteData(T value);             // O(n)
+  bool deleteAt(int posicion);          // O(n)
+  T getData(int position);              // O(n)
   void updateData(T value, T newValue); // O(n)
-  void updateAt(T pos, T newValue); // O(n)
-  int findData(T value); // O(n)
-  // se llama asi:  lista1 = lista2 
-  T operator=(const LinkedList<T>& other);  // O(n)
+  void updateAt(T pos, T newValue);     // O(n)
+  int findData(T value);                // O(n)
+  // se llama asi:  lista1 = lista2
+  LinkedList<T> &operator=(const LinkedList<T> &l);
 };
 
 template <class T>
@@ -249,18 +249,20 @@ void LinkedList<T>::updateData(T value, T newValue)
 template <class T>
 void LinkedList<T>::updateAt(T pos, T newValue)
 {
-   if (pos < 0 || pos >= numElements)
+  if (pos < 0 || pos >= numElements)
   {
     throw std::out_of_range("Indice fuera de rango");
   }
   else
   {
-    if (pos == 0) head->data = newValue;
+    if (pos == 0)
+      head->data = newValue;
     Node<T> *p = head;
     int index = 0;
     while (p != nullptr)
     {
-      if (index == pos) p->data = newValue;
+      if (index == pos)
+        p->data = newValue;
       index++;
       p = p->next;
     }
@@ -284,22 +286,37 @@ int LinkedList<T>::findData(T value)
     return pos;
 }
 
-// ! TODO
-// este es O(n) pues se recorren todos los nodos y se sobreescriben 
+// Asignment operator o(n)
+// este es O(n) pues se recorren todos los nodos a borrar
+// luego se hacen n operaciones O(1) = O(n)
+// O(2n)
 template <class T>
-T LinkedList<T>::operator= (const LinkedList<T>& other)
+LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &l)
 {
-//   Node<T> *ptrO = head;
-//   Node<T> *ptrP = T.head;
-//   T.numElements = numElements;
-//   int count = numElements;
-//   while (ptrO->next != nullptr && count != 0)
-//   {
-//     ptrP->data = ptrO->data;
-//     ptrO = ptrO->next;
-//     ptrP = ptrP->next;
-//     count--;
-//   }
+  Node<T> *ptr = l.head;
+  if (numElements != 0)
+  {
+    Node<T> *prev, *q;
+    prev = head;
+    while (prev != nullptr)
+    {
+      q = prev->next;
+      delete prev;
+      prev = q;
+    }
+    head = nullptr;
+    tail = nullptr;
+    numElements = 0;
+  }
+  if (numElements == 0)
+  {
+    while (ptr != nullptr)
+    {
+      addLast(ptr->data);
+      ptr = ptr->next;
+    }
+  }
+  return *this;
 }
 
 #endif // _LINKEDLIST_H_
