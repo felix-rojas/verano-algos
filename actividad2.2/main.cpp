@@ -138,5 +138,12 @@ int main() {
 
   miLista.printList();
   std::cout << std::endl; 
+
+  DLinkedList<int> minuevaLista = miLista.getReversedSublist();
+  minuevaLista.printList();
+  std::cout << std::endl; 
+  miLista.printList();
+  std::cout << std::endl; 
   return 0;
+  
 }

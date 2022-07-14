@@ -26,12 +26,24 @@ public:
   void updateAt(T pos, T newValue); // O(n)
   void partition();
   void sort();
+  DLinkedList<T> getReversedSublist();
   // ! TODO
   // * sort https://www.geeksforgeeks.org/quicksort-for-linked-list/
   // * invert
   // * get reverse
 };
 
+template <class T>
+DLinkedList<T> DLinkedList<T>::getReversedSublist(){
+  DLinkedList<T> nueva;
+  DLLNode<T> *p = head;
+  for (int i = 0; i < numElements; i++)
+  {
+    nueva.addFirst(p->data);
+    p = p->next;
+  }
+  return nueva;
+}
 template <class T>
 DLinkedList<T>::DLinkedList()
 {

@@ -24,11 +24,4 @@ DLLNode<T>::DLLNode(T value) {
   prev = nullptr;
 }
 
-template <class T>
-DLLNode<T>& DLLNode<T>::operator=(const DLLNode<T> &l){
-  data = l->data;
-  next = l->next;
-  prev = l->prev;
-}
-
 #endif // _DLLNODE_H_
