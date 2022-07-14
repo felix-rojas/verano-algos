@@ -12,6 +12,9 @@ class BST {
     BSTNode<T>* getSuccessor(BSTNode<T> *p);
     BSTNode<T>* deleteRecursive(BSTNode<T> *p, T value);
     void print2D(BSTNode<T> *p, int space);
+    void inorderRecursive(BSTNode <T> *p);
+    void preorderRecursive(BSTNode <T> *p);
+    void postorderRecursive(BSTNode <T> *p);
 
   public:
     BST();
@@ -21,6 +24,9 @@ class BST {
     void insert(T value);
     void deleteNode(T value);
     void print();
+    void callInorder(); // wrapper
+    void callPreorder(); // wrapper
+    void callPostorder(); // wrapper
 };
 
 template <class T>
@@ -148,6 +154,51 @@ void BST<T>::print2D(BSTNode<T> *root, int space) {
 template <class T>
 void BST<T>::print() {
   print2D(root, 0);
+}
+
+template <class T>
+void BST<T>::inorderRecursive(BSTNode <T> *p) {
+  if (p != nullptr) {
+    inorderRecursive(p ->left);
+    std::cout << p->data << " ";
+    inorderRecursive(p ->right);
+  }
+}
+
+template <class T>
+void BST<T>::callInorder() {
+  inorderRecursive(root);
+  std::cout << std::endl;
+}
+
+template <class T>
+void BST<T>::callPreorder() {
+  preorderRecursive(root);
+  std::cout << std::endl;
+}
+
+template <class T>
+void BST<T>::callPostorder() {
+  postorderRecursive(root);
+  std::cout << std::endl;
+}
+
+template <class T>
+void BST<T>::preorderRecursive(BSTNode <T> *p) {
+  if (p != nullptr) {
+    std::cout << p->data << " ";
+    preorderRecursive(p ->left);
+    preorderRecursive(p ->right);
+  }
+}
+
+template <class T>
+void BST<T>::postorderRecursive(BSTNode <T> *p) {
+  if (p != nullptr) {
+    postorderRecursive(p ->left);
+    postorderRecursive(p ->right);
+    std::cout << p->data << " ";
+  }
 }
 
 #endif // _BST__H_
