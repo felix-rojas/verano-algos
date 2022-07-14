@@ -140,10 +140,19 @@ int main() {
   std::cout << std::endl; 
 
   DLinkedList<int> minuevaLista = miLista.getReversedSublist();
+  std::cout << "Lista nueva: " ;
   minuevaLista.printList();
-  std::cout << std::endl; 
+  std::cout << "Lista previa: "; 
   miLista.printList();
   std::cout << std::endl; 
+
+  std::cout << "Lista original: "; 
+  miLista.printList();
+  std::cout << "Lista invertida: "; 
+  miLista.invert();
+  miLista.printList();
+  std::cout << std::endl; 
+
   return 0;
   
 }
