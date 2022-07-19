@@ -8,24 +8,26 @@ template <class T>
 class priority_queue
 {
 private:
-	std::vector<T> data;
-    int maxCapacity;
-    int numElements;
-	int parent(T i);
-	int left(T i);
-	int right(T i);
+	std::vector<T> data; // O(1)
+	int maxCapacity;	 // O(1)
+	int numElements;	 // O(1)
+	int parent(T i);	 // O(1)
+	int left(T i);		 // O(1)
+	int right(T i);		 // O(1)
 
 public:
-	priority_queue(int capacity);
+	priority_queue(int capacity); // O(1)
 	~priority_queue();
-	bool Empty();
-	int getCapacity();
-	int getNumElements();
-	void heapify(T index);
-	void pop();
-	void printHeap();
-	void push(T num);
-	T top();
+	bool Empty();		  // O(1)
+	int getCapacity();	  // O(1)
+	int getNumElements(); // O(1)
+	// * Heapify es referenciado de https://www.geeksforgeeks.org/binary-heap/
+	// * sin autor, actualizado por Dinesh Clinton
+	void heapify(T index); // O(log n)
+	void pop();			   // O(log n)
+	void printHeap();	   // O(n), recorre e imprime todo el arreglo
+	void push(T num);	   // O(log n)
+	T top();			   // O(1)
 };
 
 template <class T>
@@ -53,13 +55,13 @@ bool priority_queue<T>::Empty()
 template <class T>
 int priority_queue<T>::getCapacity()
 {
-    return maxCapacity;
+	return maxCapacity;
 }
 
 template <class T>
 int priority_queue<T>::getNumElements()
 {
-    return numElements;
+	return numElements;
 }
 template <class T>
 void priority_queue<T>::printHeap()
@@ -138,14 +140,17 @@ void priority_queue<T>::pop()
 	for (auto i : data)
 		std::cout << i << ' ';
 		*/
-	if (Empty()){
+
+	if (Empty())
+	{
 		throw std::out_of_range("Heap vacio");
 	}
-	if (getCapacity() == 1){
+	if (getCapacity() == 1)
+	{
 		maxCapacity--;
 		data.resize(maxCapacity);
 	}
-	std::swap(data[0], data[numElements-1]);
+	std::swap(data[0], data[numElements - 1]);
 	numElements--;
 	maxCapacity--;
 	data.resize(maxCapacity);

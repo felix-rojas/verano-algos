@@ -1,5 +1,5 @@
 // Alexia Castillo Diaz-A00227250
-//  Felix Javier Rojas Gallardo - A01201946
+// Felix Javier Rojas Gallardo - A01201946
 
 // Compilation g++ -std=c++17 -o main *.cpp
 // Compilation for debugging :
