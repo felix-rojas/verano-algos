@@ -6,6 +6,8 @@
 //  1.  g++ -std=c++17 -o main *.cpp
 //  2.  valgrind --leak-check=full -s ./main
 
+// El nombre de la funcion size() lo cambiamos por getCapacity
+// pues es confuso con size y std::size
 #include <iostream>
 #include "priority_queue.h"
 
