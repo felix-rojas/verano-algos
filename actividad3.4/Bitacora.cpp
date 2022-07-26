@@ -2,7 +2,11 @@
 #include <algorithm>
 #include <iostream>
 
-Bitacora::Bitacora() { listaRegistros.resize(0); }
+Bitacora::Bitacora() 
+{ 
+    listaRegistros.resize(0); 
+    heapRegistros(0);
+    }
 
 Bitacora::~Bitacora() { listaRegistros.clear(); }
 
@@ -205,3 +209,6 @@ time_t Bitacora::convertToTime(std::string fecha)
     return date;
 }
 
+  void heapSort(priority_queue<Registro> &heapRegistros){
+
+  }

@@ -1,0 +1,27 @@
+Grafo 2 de prueba (no dirigido, no ponderado) -- Grafo de Petersen
+10 10 15
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+1 10
+1 5
+1 9
+2 9
+2 4
+2 8
+3 4
+3 6
+3 10
+4 5
+5 7
+6 7
+6 9
+7 8
+8 10

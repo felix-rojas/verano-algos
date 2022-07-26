@@ -6,12 +6,14 @@
 #include <sstream>
 #include <ctime>
 #include "Registro.h"
+#include "priorityq.h"
 
 class Bitacora
 {
 private:
   // vector de objetos Registro (cada celda es un renglon de bitacora.txt)
   std::vector<Registro> listaRegistros;
+  priority_queue<Registro> heapRegistros;
 
 public:
   /* Attributes */
@@ -29,9 +31,11 @@ public:
 
   //getter
   std::vector<Registro>& getLista() { return listaRegistros;}
+  priority_queue<Registro>& getHeap() { return heapRegistros;}
 
   // bitacora size
   int getSize() {return listaRegistros.size();}
+  int getSize() { return heapRegistros.getNumElements();}
 
   // file reading
   void lecturaDatos(std::string fileName);
@@ -55,6 +59,9 @@ public:
   
   // binary search
   std::vector<Registro> busquedaBinaria(std::vector<Registro> sortedVec, time_t inicio, time_t fin);
+  
+  // heapsort
+  void heapSort(priority_queue<Registro> &heapRegistros);
 
 };
 #endif // _BITACORA_H_

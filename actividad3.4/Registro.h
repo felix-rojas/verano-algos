@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cmath>
 #include <iostream>
+#incled "priorityq.h"
 
 class Registro
 {

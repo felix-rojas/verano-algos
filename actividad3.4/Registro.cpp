@@ -137,8 +137,7 @@ bool Registro::operator<(const Registro &other) const
 
 bool Registro::operator<=(const Registro &other) const
 {
-  return this->ipNumber
-   <= other.ipNumber;
+  return this->ipNumber <= other.ipNumber;
 }
 
 bool Registro::operator>=(const Registro &other) const

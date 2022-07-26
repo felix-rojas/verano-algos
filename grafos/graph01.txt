@@ -1,0 +1,21 @@
+Grafo 1 de prueba (no dirigido, no ponderado)
+8 8 11
+Uno
+Dos
+Tres
+Cuatro
+Cinco
+Seis
+Siete
+Ocho
+1 4
+2 4
+2 6
+3 5
+3 6
+3 7
+4 6
+5 7
+6 7
+6 8
+7 8

@@ -31,7 +31,8 @@ int main()
   // std::string fin;
   // std::getline(std::cin, fin);
 
-  std::vector<Registro> datos = myBitacora.getLista();
+  // std::vector<Registro> datos = myBitacora.getLista();
+  priority_queue<Registro> datps = myBitacora.getLista();
   myBitacora.mergeSort(datos, 0, myBitacora.getSize() - 1);
 
   // std::vector<Registro> resultado = myBitacora.busquedaBinaria(datos, myBitacora.convertToTime(inicio), myBitacora.convertToTime(fin));
