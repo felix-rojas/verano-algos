@@ -109,7 +109,7 @@ std::string Registro::getIP()
 //   return this->date <= other.date;
 // }
 
-// bool Registro::operator>=(const Registro &other) const
+// bool Registro.date::operator>=(const Registro.date &other) const
 // {
 //   return this->date >= other.date;
 // }

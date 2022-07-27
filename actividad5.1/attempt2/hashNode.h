@@ -16,7 +16,7 @@ HashNode<K, T>::HashNode(K newKey, T newData)
 {
     key = newKey;
     data = newData; 
-    next = nullptr;
+    next = NULL;
 }
 
 #endif //_HASH_NODE_H_

@@ -47,21 +47,21 @@ void Bitacora::print()
 
 // ! This is actually linear search using the std cpp library sorting algorithm
 // * It does work though
-std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
-{
-    std::vector<Registro> resultados;
-    for (int i = 0; i < (int)listaRegistros.size(); i++)
-    { // filtra resultados
-        if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
-        { // almacena resultados
-            resultados.push_back(listaRegistros[i]);
-        }
-        // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
-        // se puede usar el sort pues es un vector con iterador
-        std::sort(resultados.begin(), resultados.end());
-    }
-    return resultados;
-}
+// std::vector<Registro> Bitacora::busqueda(time_t inicio, time_t fin)
+// {
+//     std::vector<Registro> resultados;
+//     for (int i = 0; i < (int)listaRegistros.size(); i++)
+//     { // filtra resultados
+//         if (listaRegistros[i].getdate() >= inicio && listaRegistros[i].getdate() <= fin)
+//         { // almacena resultados
+//             resultados.push_back(listaRegistros[i]);
+//         }
+//         // O(N·log(N)), where N = std::distance(first, last) comparisons on average.
+//         // se puede usar el sort pues es un vector con iterador
+//         std::sort(resultados.begin(), resultados.end());
+//     }
+//     return resultados;
+// }
 
 void Bitacora::merge(std::vector<Registro> &listaRegistros, int low, int m, int high)
 {
@@ -149,57 +149,4 @@ std::vector<Registro> Bitacora::busquedaBinaria(std::vector<Registro> sortedVec,
     }
     std::cout << "Not Found " << found << std::endl;
     return resultados;
-}
-
-time_t Bitacora::convertToTime(std::string fecha)
-{
-    std::vector<std::string> fechacom;
-    std::string elemento;
-    char separador = ' ';
-    for_each(begin(fecha), end(fecha), [&](char const ch)
-             {
-        if (ch != separador) {
-            elemento += ch;
-        } else {
-            if (elemento.length() > 0) {
-                fechacom.push_back(elemento);
-                elemento.clear();
-            }
-        } });
-    if (elemento.length() > 0)
-    {
-        fechacom.push_back(elemento);
-    }
-    std::string temporal = "";
-    std::string hora = fechacom[2];
-    for (int i = 0; i < (int)hora.size(); i++)
-    {
-        if (hora[i] != ':')
-        {
-            temporal += hora[i];
-            fechacom.push_back(temporal);
-        }
-        else
-        {
-            temporal = "";
-        }
-    }
-    // tranforma fecha completa a segundos desde 1970
-    // Almacenar los campos de la fecha-hora en el struct tm
-    dateStruct.tm_sec = std::stoi(fechacom[8]);
-    dateStruct.tm_min = std::stoi(fechacom[6]);
-    dateStruct.tm_hour = std::stoi(fechacom[4]);
-    dateStruct.tm_mday = std::stoi(fechacom[1]);
-
-    // Agregado para resolver problema de compatibilidad en Windows
-    dateStruct.tm_isdst = 0;
-    for (size_t i = 0; i < meses.size(); i++)
-    {
-        if (meses[i] == fechacom[0])
-            dateStruct.tm_mon = i;
-    }
-    dateStruct.tm_year = 2022 - 1900; // Asumimos el año 2022
-    // Obtener el Unix timestamp a partir del struct tm anterior
-    date = mktime(&dateStruct);
-    return date;
 }

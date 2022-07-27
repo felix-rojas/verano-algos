@@ -209,6 +209,3 @@ time_t Bitacora::convertToTime(std::string fecha)
     return date;
 }
 
-  void heapSort(priority_queue<Registro> &heapRegistros){
-
-  }
