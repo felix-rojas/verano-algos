@@ -16,13 +16,13 @@
  **/
 
 #include <iostream>
-#include "tabla_hash.h"
+#include "hashMap.h"
 
 int main() {
 
   std::cout << "Hash Table Example!\n";
 
-  HashTable<int, std::string> myHashTable(7);
+  HashMap<int, std::string> myHashTable(7);
   std::cout << "Table current size: " << myHashTable.getSize() << std::endl;
   try {
     std::cout << "Add (50, Hello)" << std::endl;
