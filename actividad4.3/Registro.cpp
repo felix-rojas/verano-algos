@@ -41,7 +41,7 @@ Registro::Registro(std::string mes, std::string dia,
     dateStruct.tm_year = 2022 - 1900; // Asumimos el año 2022
     // Obtener el Unix timestamp a partir del struct tm anterior
     date = mktime(&dateStruct);
-    // make the unsigned int of the IP
+    // make the unsigned int of the IP and store it
     ipNumber = ip2int(ip);
 }
 
@@ -50,7 +50,7 @@ std::string Registro::getAll()
     return mes + " " + dia + " " +
            hora + ":" + min + ":" +
            seg + " " + ip + ":" +
-           puerto + " " + msg + " " + std::to_string(date);
+           puerto + " " + msg;
 }
 
 time_t Registro::getdate()
@@ -58,23 +58,27 @@ time_t Registro::getdate()
     return date;
 }
 
+unsigned int Registro::getIPint(){
+    return ipNumber;
+}
+
 // using unsigned integer because pow(2, 32) is the amount of IPv4 that exist
 unsigned int Registro::ip2int(std::string ipSequence)
 {
     {
         std::string delim = ".";           // IP's are separated by dots
-        auto start = 0;                    // let compiler decide type of number
-        auto end = ipSequence.find(delim); // look for dot between IP's
+        unsigned short int start = 0;                    // tiny int since ips are only 16 chars at most
+        unsigned short int end = ipSequence.find(delim); // look for dot between IP's
         unsigned int temp;                 // store substrings of the ip address
         unsigned int res = 0;              // store the full number
-        int count = 3;                     // power of 2 to multiply each part of the IP
+        short int power = 3;               // power of 2 to multiply each part of the IP
         while (end != std::string::npos)   // npos means until the end of the string
         {
-            temp = stoi(ipSequence.substr(start, end - start));
-            res += temp * pow(256, count);
+            temp = stoi(ipSequence.substr(start, end - start)); // temp is the number before each dot
+            res += temp * pow(256, power);                      // base 256 pow of 3, then 2, then 1 and 0
             start = end + delim.length();
             end = ipSequence.find(delim, start);
-            count--;
+            power--;
         }
         temp = stoi(ipSequence.substr(start, end)); //change to int
         res += temp;

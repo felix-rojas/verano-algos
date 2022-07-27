@@ -26,22 +26,21 @@ int main()
   // Only use it if you are using shortTest
   // myBitacora.print();  
 
-  std::string temp;
+  std::string sub;
+  std::string sub1;
   int NoDirecciones;
   int NoIncidencias;
   int delimiter;
   
-  std::getline(std::cin, temp);
-  delimiter = temp.find(" "); // find spacebar delimiter
-  std::string sub = temp.substr(delimiter + 1);
-  std::string sub1 = temp.substr(0, delimiter);
+  std::getline(std::cin, sub, ' '); //first arg
+  std::getline(std::cin, sub1);     //second arg
 
   NoDirecciones = std::stoi(sub); // number of IP's to process
-  NoIncidencias = std::stoi(sub1);// number of incidentsa in the log
+  NoIncidencias = std::stoi(sub1);// number of incidents in the log
 
 for (size_t i = 0; i < NoDirecciones; i++)
 {
-  /* code */
+  std::getline()
 }
 
 

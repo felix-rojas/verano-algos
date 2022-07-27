@@ -34,7 +34,8 @@ public:
              std::string puerto, std::string msg);
     std::string getAll();
     time_t getdate();
-    unsigned int ip2int(std::string);
+    unsigned int getIPint();
+    unsigned int ip2int(std::string IPV4address);
     // sobrecarga operadores
     bool operator==(const Registro &) const;
     bool operator!=(const Registro &) const;

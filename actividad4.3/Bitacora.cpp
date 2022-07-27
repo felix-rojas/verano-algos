@@ -1,15 +1,15 @@
 #include "Bitacora.h"
-#include <algorithm>
 #include <iostream>
 
-Bitacora::Bitacora() { listaRegistros.resize(0); }
+Bitacora::Bitacora() { listaRegistros.resize(0); } // construct empty vector
 
-Bitacora::~Bitacora() { listaRegistros.clear(); }
+Bitacora::~Bitacora() { listaRegistros.clear(); } // clear said vector
 
 void Bitacora::lecturaDatos(std::string fileName)
 {
     std::string month, day, hour, minute, second, ipAdd, port, message;
     std::ifstream inputFile(fileName);
+
     if (!inputFile.good())
     {
         inputFile.close();
@@ -19,7 +19,6 @@ void Bitacora::lecturaDatos(std::string fileName)
     {
         while (!inputFile.eof())
         {
-            // to-do validar que la longitud de month sea mayor a cero
             std::getline(inputFile, month, ' ');
             std::getline(inputFile, day, ' ');
             std::getline(inputFile, hour, ':');
@@ -45,6 +44,9 @@ void Bitacora::print()
     }
 }
 
+// Modify entry by reference so we end up with the same vector but sorted
+// Merge Sort uses 2 vectors that can be dynamically resized for simplicity sake
+// we also assume that the entries obviously keep expanding so we cannot now the total size
 void Bitacora::merge(std::vector<Registro> &listaRegistros, int low, int m, int high)
 {
     int i, j, k;
@@ -93,15 +95,17 @@ void Bitacora::mergeSort(std::vector<Registro> &listaRegistros, int low, int hig
     if (low < high)
     {
         int m = (low + high) / 2;
-        // Ordena recursivamente las dos mitades
+        // Go recursively through each half
         mergeSort(listaRegistros, low, m);
         mergeSort(listaRegistros, m + 1, high);
-        // fusiona las dos mitades
+        // Fuse halves
         merge(listaRegistros, low, m, high);
     }
 }
 
-// binarySearch iterativa
+// Iterative binarySearch exclusively for dates
+// Generates a vector to print out the search results
+// Time complexity is O(log n) because it splits the search by half
 std::vector<Registro> Bitacora::busquedaBinaria(std::vector<Registro> sortedVec, time_t inicio, time_t fin)
 {
     std::vector<Registro> resultados;
@@ -114,7 +118,8 @@ std::vector<Registro> Bitacora::busquedaBinaria(std::vector<Registro> sortedVec,
     while (low <= high)
     {
         mid = low + (high - low) / 2;
-        if (inicio == sortedVec[mid].getdate()){
+        if (inicio == sortedVec[mid].getdate())
+        {
             while (sortedVec[mid].getdate() <= fin)
             {
                 mid++;
