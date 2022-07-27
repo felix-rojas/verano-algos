@@ -39,6 +39,12 @@ int main()
   NoDirecciones = std::stoi(sub); // number of IP's to process
   NoIncidencias = std::stoi(sub1);// number of incidentsa in the log
 
+for (size_t i = 0; i < NoDirecciones; i++)
+{
+  /* code */
+}
+
+
   std::vector<Registro> datos = myBitacora.getLista();
   // hace mergesort de las IP, ignora fechas
   myBitacora.mergeSort(datos, 0, myBitacora.getSize()-1);
