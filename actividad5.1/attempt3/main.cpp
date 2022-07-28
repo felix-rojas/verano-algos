@@ -1,3 +1,14 @@
+/*
+ * Compilacion para debug:
+ *    g++ -std=c++17 -g -o main *.cpp
+ * Ejecucion con valgrind:
+ *    nix-env -iA nixpkgs.valgrind
+ *    valgrind --leak-check=full ./main
+ *
+ * Compilacion para ejecucion:
+ *    g++ -std=c++17 -O3 -o main *.cpp
+*/
+
 # include "openHash.h"
 int main()
 {
