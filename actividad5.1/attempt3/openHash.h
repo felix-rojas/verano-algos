@@ -50,13 +50,7 @@ Hash<T, K>::Hash(T cubetas)
 template <class T, class K>
 Hash<T, K>::~Hash()
 {
-    std::list<int>::iterator i;
-    for (size_t i = 0; i < BucketCount; i++)
-    {
-        table[i].clear();
-        table[i].resize(0);
-    }
-    delete table;
+    delete[]table;
 }
 template <class T, class K>
 void Hash<T, K>::insertItem(K keyVal)
