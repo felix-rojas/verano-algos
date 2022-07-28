@@ -1,77 +1,67 @@
 /*
  * compilar:
  *   g++ -std=c++17 -Wall -o main *.cpp
- * 
+ *
  * debug for all tests:
- *   valgrind --leak-check=full ./main < test01.txt | valgrind --leak-check=full ./main < test02.txt | valgrind --leak-check=full ./main < test03.txt 
- * 
+ *   valgrind --leak-check=full ./main
  * ejecutar:
- *   ./main 
+ *   ./main
  *
  * casos de prueba
- *   ./main < test01.txt > res1.txt | ./main < test02.txt > res2.txt | ./main < test03.txt > res3.txt
  */
 
 #include "Bitacora.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
+
+// assumes a valid IPv4 address
+// referenced from https://stackoverflow.com/a/5328190
+double ip2int(std::string ipStr)
+{
+  std::stringstream s(ipStr);
+  int a, b, c, d; // to store the 4 ints
+  char ch;        // to temporarily store the '.'
+  s >> a >> ch >> b >> ch >> c >> ch >> d;
+  double res = a*std::pow(256,3) + b*std::pow(256,2) + c*256 + d;
+  return res;
+}
 
 int main()
 {
-  Bitacora myBitacora;
-  
-  // Usa "small.txt" para pruebas
-  // myBitacora.lecturaDatos("bitacora.txt");
-  // Only use it if you are using shortTest
-  // myBitacora.print();  
-
-  std::string sub;
-  std::string sub1;
-  int NoDirecciones;
-  int NoIncidencias;
-  int delimiter;
-  
-  std::getline(std::cin, sub, ' '); //first arg
-  std::getline(std::cin, sub1);     //second arg
-
-  NoDirecciones = std::stoi(sub); // number of IP's to process
-  NoIncidencias = std::stoi(sub1);// number of incidents in the log
-
-for (size_t i = 0; i < NoDirecciones; i++)
-{
-  std::getline()
-}
-
-
-  std::vector<Registro> datos = myBitacora.getLista();
-  // hace mergesort de las IP, ignora fechas
-  myBitacora.mergeSort(datos, 0, myBitacora.getSize()-1);
-
-// file-writing
-  std::ofstream fw("bitacora_ordenada.txt", std::ofstream::out);
-  if (fw.is_open())
   {
-   fw << "No. de Direcciones IP: " << NoDirecciones << "\n";
-    fw << "No. de Incidencias: " << NoIncidencias << "\n";
-    fw << "Se encontraron: " << resultado.size() << " registros"<< "\n";
-    for (int i = 0; i < (int)resultado.size(); i++)
+    Bitacora A;
+    std::string AddressesNo, IncidentsNo;
+    std::string IPstring;
+    std::string IPchunk;
+    // unsigned long IPnum = 0;
+
+    std::ifstream inputFile("bitacoraGrafos.txt");
+    std::getline(inputFile, AddressesNo, ' ');
+    std::getline(inputFile, IncidentsNo);
+    // vector of tuples containing the ip and its int number
+    std::vector<unsigned long> vecNums;
+    std::vector<std::string> vecIpList;
+
+    int addresses = stoi(AddressesNo);
+    int count = 0;
+    while (count < addresses)
     {
-      fw << resultado[i].getAll() << "\n";
+      std::getline(inputFile, IPstring);
+      vecIpList.push_back(IPstring);
+      count++;
     }
-    
-    fw << "---  ALL SORTED DATA ---" << "\n"; 
-    fw << "Total registries: "<< datos.size() << "\n";
-    fw << "Month Day HH:MM:SS IP:PORT Message Unixtime" << "\n";
-    for (int i = 0; i < (int)datos.size(); i++)
+    inputFile.close();
+
+    for (unsigned int i = 0; i < vecIpList.size(); i++)
     {
-      //std::cout << datos[i].getAll() << std::endl;
-      fw << datos[i].getAll() << "\n";
+      vecNums.push_back(ip2int(vecIpList[i]));
     }
-    fw.close();
+    for (unsigned int i = 0; i < vecIpList.size(); i++)
+    {
+      std::cout << i << ". " << vecIpList[i] << "number of IP: " << vecNums[i] << "\n";
+    }
   }
-  else
-    std::cout << "No se pudo crear el archivo" << std::endl;
-  
   return 0;
 }

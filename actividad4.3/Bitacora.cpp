@@ -7,7 +7,7 @@ Bitacora::~Bitacora() { listaRegistros.clear(); } // clear said vector
 
 void Bitacora::lecturaDatos(std::string fileName)
 {
-    std::string month, day, hour, minute, second, ipAdd, port, message;
+    std::string month, day, hour, minute, second, InIpAdd, InPort, OutIpAdd, OutPort, message;
     std::ifstream inputFile(fileName);
 
     if (!inputFile.good())
@@ -24,11 +24,13 @@ void Bitacora::lecturaDatos(std::string fileName)
             std::getline(inputFile, hour, ':');
             std::getline(inputFile, minute, ':');
             std::getline(inputFile, second, ' ');
-            std::getline(inputFile, ipAdd, ':');
-            std::getline(inputFile, port, ' ');
+            std::getline(inputFile, InIpAdd, ':');
+            std::getline(inputFile, InPort, ' ');
+            std::getline(inputFile, OutIpAdd, ':');
+            std::getline(inputFile, OutPort, ' ');
             std::getline(inputFile, message);
             // crear un objeto de la clase Registro
-            Registro tmpReg(month, day, hour, minute, second, ipAdd, port, message);
+            Registro tmpReg(month, day, hour, minute, second, InIpAdd, InPort, OutIpAdd, OutPort, message);
             // agregar el objeto al vector
             listaRegistros.push_back(tmpReg);
         }
