@@ -34,8 +34,6 @@ int main()
     Bitacora A;
     std::string AddressesNo, IncidentsNo;
     std::string IPstring;
-    std::string IPchunk;
-    // unsigned long IPnum = 0;
 
     std::ifstream inputFile("bitacoraGrafos.txt");
     std::getline(inputFile, AddressesNo, ' ');
@@ -44,13 +42,19 @@ int main()
     std::vector<unsigned long> vecNums;
     std::vector<std::string> vecIpList;
 
-    int addresses = stoi(AddressesNo);
+    int addresses = std::stoi(AddressesNo);
+    int incidents = std::stoi(IncidentsNo);
     int count = 0;
     while (count < addresses)
     {
       std::getline(inputFile, IPstring);
       vecIpList.push_back(IPstring);
       count++;
+    }
+
+    // reading while loop for log registries
+    count = 0;
+    while (count < incidents){
     }
     inputFile.close();
 
