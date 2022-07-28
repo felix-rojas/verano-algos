@@ -19,15 +19,19 @@ class Hash
 
 public:
     Hash(T Cubetas); // Constructor
-    ~Hash(); // Destructor O(n^2)
+    ~Hash();         // Destructor O(n^2)
 
     // inserts a keyVal into hash table
-    void insertItem(K keyVal); // O(1)
+    // O(1) constant due to lists insertion time
+    void add(T keyVal); 
 
     // deletes a keyVal from hash table
+    // O(n) 
     void remove(K keyVal);
-    
+
     // finds a keyVal from hash table, returns T
+    // O(n*n) if the hash element is at the las position and they all have the same mod
+    // Average case is (n + m)
     T find(K keyVal);
 
     // hash function to map values to keyVal
@@ -37,6 +41,8 @@ public:
         return (value % BucketCount);
     }
 
+    // Average case is (n+m) unless every list
+    // has a sublist the size of n, in which case O(n^2) 
     void print();
 };
 
@@ -50,13 +56,13 @@ Hash<T, K>::Hash(T cubetas)
 template <class T, class K>
 Hash<T, K>::~Hash()
 {
-    delete[]table;
+    delete[] table; // initialized using new[], call delete[]
 }
 template <class T, class K>
-void Hash<T, K>::insertItem(K keyVal)
+void Hash<T, K>::add(T value)
 {
-    int index = hashFunction(keyVal);
-    table[index].push_back(keyVal);
+    int index = hashFunction(value);
+    table[index].push_back(value);
 }
 
 template <class T, class K>
@@ -67,7 +73,7 @@ void Hash<T, K>::remove(K keyVal)
 
     // find the keyVal in (index)th list
     std::list<int>::iterator i;
-    for (i = table[index].begin();i != table[index].end(); i++)
+    for (i = table[index].begin(); i != table[index].end(); i++)
     {
         if (*i == keyVal)
             break;
@@ -83,19 +89,16 @@ T Hash<T, K>::find(K keyVal)
 {
     // get the hash index of keyVal
     int index = hashFunction(keyVal);
-
     // find the keyVal in (index)th list
     std::list<int>::iterator i;
-    for (i = table[index].begin();
-         i != table[index].end(); i++)
+    for (i = table[index].begin(); i != table[index].end(); i++)
     {
         if (*i == keyVal)
             break;
     }
-
-    // if keyVal is found in hash table, return it
     if (i != table[index].end())
-        return table[index];
+        return index;
+    else return -1;
 }
 
 // function to display hash table
