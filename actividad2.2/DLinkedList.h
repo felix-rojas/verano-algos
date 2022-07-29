@@ -48,6 +48,8 @@ DLinkedList<T> DLinkedList<T>::getReversedSublist(){
 }
 
 // o(n) recorre toda la DLL
+// referenciado de rathbhupendra en
+// https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
 template <class T>
 void DLinkedList<T>::invert(){
   DLLNode<T> *temp = nullptr;
