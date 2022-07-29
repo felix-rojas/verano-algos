@@ -228,6 +228,7 @@ T LinkedList<T>::getData(int position)
   }
 }
 
+// O(n) cuandop el valor no existe op es el ultimo de la lista
 template <class T>
 void LinkedList<T>::updateData(T value, T newValue)
 {
@@ -246,6 +247,8 @@ void LinkedList<T>::updateData(T value, T newValue)
       throw std::out_of_range("No existe el valor en la lista");
   }
 }
+
+// O(n) cuandop pos es el ultimo nodo de la lista
 template <class T>
 void LinkedList<T>::updateAt(T pos, T newValue)
 {

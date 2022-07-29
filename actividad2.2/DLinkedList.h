@@ -25,12 +25,8 @@ public:
   void updateData(T value, T newValue);
   void updateAt(T pos, T newValue); // O(n)
   void partition();
-  void sort();
   void invert();
   DLinkedList<T> getReversedSublist();
-  // ! TODO
-  // * sort https://www.geeksforgeeks.org/quicksort-for-linked-list/
-  // * invert
 };
 
 
@@ -52,7 +48,9 @@ DLinkedList<T> DLinkedList<T>::getReversedSublist(){
 // https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
 template <class T>
 void DLinkedList<T>::invert(){
+  // node to store info to move forward
   DLLNode<T> *temp = nullptr;
+  // node to store head 
   DLLNode<T> *current = this->head;
   while (current != nullptr)
   {
@@ -61,11 +59,14 @@ void DLinkedList<T>::invert(){
     current->next = temp;
     current = current->prev;
   }
+  // after rearranging, check if head
+  // only has one node
   if (temp != nullptr){
     this->head = temp ->prev;
   }
 }
 
+// O(1) all assignments
 template <class T>
 DLinkedList<T>::DLinkedList()
 {
@@ -75,6 +76,7 @@ DLinkedList<T>::DLinkedList()
   numElements = 0;
 }
 
+// O(n) all nodes need to be deleted
 template <class T>
 DLinkedList<T>::~DLinkedList()
 {

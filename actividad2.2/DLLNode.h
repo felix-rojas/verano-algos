@@ -1,7 +1,7 @@
 #ifndef _DLLNODE_H_
 #define _DLLNODE_H_
 
-#include<ostream>
+#include <iostream>
 
 template <class T> class DLLNode {
 public:
